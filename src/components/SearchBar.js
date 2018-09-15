@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import {Button} from 'reactstrap';
 
 class SearchBar extends Component {
     render() { 
         return (
             <form>
                 <input />
-                <button type="submit">Buscar</button>
+                <Button color="primary">Buscar</Button>
             </form>
         );
     }
