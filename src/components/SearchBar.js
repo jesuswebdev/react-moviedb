@@ -29,7 +29,7 @@ class SearchBar extends Component {
                             />
                     </div>
                     <div className="control">
-                        <button className="button is-info">
+                        <button className="button is-light">
                             Buscar
                         </button>  
                     </div>

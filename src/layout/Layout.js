@@ -1,14 +1,15 @@
 import React from 'react';
+import Aux from './../components/Aux';
 import Footer from '../components/Footer';
 import Header from '../components/Navbar';
 
 const Layout = (props) => {
     return (
-        <div>
+        <Aux>
             <Header />
             {props.children}
             <Footer />
-        </div>
+        </Aux>
     );
 }
 
