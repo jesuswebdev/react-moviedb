@@ -1,11 +1,13 @@
 import React from 'react';
-import SearchBar from '../components/SearchBar';
+import Footer from '../components/Footer';
+import Header from '../components/Navbar';
 
 const Layout = (props) => {
     return (
         <div>
-            <SearchBar />
+            <Header />
             {props.children}
+            <Footer />
         </div>
     );
 }

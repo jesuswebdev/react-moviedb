@@ -1,12 +1,39 @@
 import React, {Component} from 'react';
-import {Button} from 'reactstrap';
 
 class SearchBar extends Component {
-    render() { 
+
+    state = {
+        term: ''
+    }
+
+    onSubmitSearch(e) {
+        e.preventDefault();
+        console.log(e);
+        console.log(this.state.term);
+    }
+
+    onInputChange(value) {
+        this.setState({term: value});
+    }
+
+    render() {
         return (
-            <form>
-                <input />
-                <Button color="primary">Buscar</Button>
+            <form onSubmit={(e) => { this.onSubmitSearch(e) }}>
+                <div className="field has-addons">
+                    <div className="control">
+                        <input className="input"
+                            type="text"
+                            placeholder="Buscar una pelicula"
+                            onChange={(e) => { this.onInputChange(e.target.value) }}
+                            value={this.state.term}
+                            />
+                    </div>
+                    <div className="control">
+                        <button className="button is-info">
+                            Buscar
+                        </button>  
+                    </div>
+                </div>
             </form>
         );
     }
