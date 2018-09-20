@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -9,13 +8,13 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './state/reducers';
-import { moviesSaga } from './state/movies/sagas/moviesSagas';
+import { watchMovies } from './state/sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(moviesSaga);
+sagaMiddleware.run(watchMovies);
 
 ReactDOM.render(
     <Provider store={store}>

@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom';
 
 class SearchBar extends Component {
 
     state = {
         term: ''
+    }
+
+    componentDidMount() {
+        console.log(this.props);
     }
 
     onSubmitSearch(e) {
@@ -29,7 +34,7 @@ class SearchBar extends Component {
                             />
                     </div>
                     <div className="control">
-                        <button className="button is-light">
+                        <button className="button is-info">
                             Buscar
                         </button>  
                     </div>
@@ -39,4 +44,4 @@ class SearchBar extends Component {
     }
 }
  
-export default SearchBar;
+export default withRouter(SearchBar);

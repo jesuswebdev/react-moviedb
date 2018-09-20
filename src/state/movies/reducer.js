@@ -1,26 +1,42 @@
-import * as movieActions from './actionTypes';
+import * as moviesActions from './actionTypes';
 
-const trendingMoviesInitialState = {
+const moviesInitialState = {
     trending: [],
-    error: false
+    trending_error: false,
+    movie_details: null,
+    movie_details_error: false
 };
 
-const reducer = (state = trendingMoviesInitialState, action) => {
+const reducer = (state = moviesInitialState, action) => {
     switch (action.type) {
-        case movieActions.REQUEST_FETCH_TRENDING_MOVIES: {
-            console.log('woot',state);
-            return state;
-        }
-
-        case movieActions.FETCH_TRENDING_MOVIES_SUCCESS: {
+        case moviesActions.FETCH_TRENDING_MOVIES_SUCCESS: {
             return {
                 ...state,
-                trending: [...action.payload.movies]
+                trending: [...action.payload.movies],
+                trending_error: false
             }
         }
 
-        case movieActions.FETCH_TRENDING_MOVIES_FAIL: {
-            return state;
+        case moviesActions.FETCH_TRENDING_MOVIES_FAIL: {
+            return {
+                ...state,
+                trending_error: true
+            }
+        }
+
+        case moviesActions.FETCH_MOVIE_DETAILS_SUCCESS: {
+            return {
+                ...state,
+                movie_details: action.payload.details,
+                movie_details_error: false
+            }
+        }
+
+        case moviesActions.FETCH_MOVIE_DETAILS_FAIL: {
+            return {
+                ...state,
+                movie_details_error: true
+            }
         }
 
         default: return state;

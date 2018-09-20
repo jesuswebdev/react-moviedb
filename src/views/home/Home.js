@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import * as movieActions from '../../state/movies/actions';
 
+import TrendingMovies from './trending-movies/TrendingMovies';
+
 class Home extends Component {
 
     componentDidMount() {
@@ -10,8 +12,13 @@ class Home extends Component {
 
 
     render() {
+
+        console.log(this.props.trendingMovies);
         return (
-            <p>Home Component {this.props.trendingMovies.length}</p>
+            <div>
+                <p>Home Component {this.props.trendingMovies.length}</p>
+                <TrendingMovies movies={this.props.trendingMovies}/>
+            </div>
         );
     }
 }
