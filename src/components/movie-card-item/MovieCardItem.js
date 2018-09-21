@@ -10,6 +10,17 @@ const MovieCardItem = ({movie}) => {
     let detailsLink = `/movies/${movie.id}`;
     let genres = getMovieGenres(movie.genre_ids);
 
+    let overview = <p className="has-text-justified">
+                        {movie.overview}
+                    </p>;
+
+    if (movie.overview.length > 160) {
+        overview = <p className="has-text-justified">
+                        {movie.overview.slice(0,150)}... 
+                        <Link to={`/movies/${movie.id}`}>More</Link>
+                    </p>
+    }
+
     return (
         <div className="column is-offset-1-mobile is-4-desktop is-5-tablet is-10-mobile">
             <div className="card">
@@ -27,7 +38,7 @@ const MovieCardItem = ({movie}) => {
                     </Link>
                     <p className="subtitle is-6">{genres}</p>
                     <p className="subtitle is-6">Score: {movie.vote_average}/10 ({movie.vote_count} votes)</p>
-                    <p>{movie.overview}</p>
+                    {overview}
                 </div>
 
                 <div className="card-footer">

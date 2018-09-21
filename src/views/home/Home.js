@@ -11,9 +11,15 @@ class Home extends Component {
     }
 
     render() {
+
+        let trending = <p className="has-text-centered">Loading...</p>;
+
+        if (this.props.trendingMovies.length > 0) {
+            trending =  <TrendingMovies movies={this.props.trendingMovies}/>;
+        }
         return (
-            <div>
-                <TrendingMovies movies={this.props.trendingMovies}/>
+            <div className="container" style={{minHeight: '85vh'}}>
+               {trending}
             </div>
         );
     }

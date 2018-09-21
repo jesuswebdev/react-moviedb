@@ -1,41 +1,39 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
+import * as searchActions from '../state/search/actions';
 
 class SearchBar extends Component {
 
-    state = {
-        term: ''
-    }
-
-    componentDidMount() {
-        console.log(this.props);
-    }
-
     onSubmitSearch(e) {
         e.preventDefault();
-        console.log(e);
-        console.log(this.state.term);
+        this.props.searchMovie(this.props.query, this.props.nextPage);
+        this.props.history.push(`/search/${this.props.query}`);
     }
 
     onInputChange(value) {
-        this.setState({term: value});
+        this.props.queryInput(value);
     }
 
     render() {
+
+        const buttonClasses = this.props.isLoading ? 'button is-loading' : 'button';
+
         return (
             <form onSubmit={(e) => { this.onSubmitSearch(e) }}>
                 <div className="field has-addons">
                     <div className="control">
                         <input className="input"
                             type="text"
-                            placeholder="Buscar una pelicula"
+                            placeholder="Search movie..."
                             onChange={(e) => { this.onInputChange(e.target.value) }}
-                            value={this.state.term}
+                            value={this.props.query}
                             />
                     </div>
                     <div className="control">
-                        <button className="button">
-                            Buscar
+                        <button className={buttonClasses}>
+                            Search
                         </button>  
                     </div>
                 </div>
@@ -43,5 +41,20 @@ class SearchBar extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        nextPage: state.search.loaded_pages + 1,
+        isLoading: state.search.loading,
+        query: state.search.query
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        queryInput: (input) => { dispatch(searchActions.searchQueryInput(input)); },
+        searchMovie: (query, nextPage) => { dispatch(searchActions.requestSearchMovie(query, nextPage)) }
+    }
+}
  
-export default withRouter(SearchBar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar));

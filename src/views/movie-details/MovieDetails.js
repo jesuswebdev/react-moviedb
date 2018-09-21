@@ -13,9 +13,13 @@ class MovieDetails extends Component {
     }
 
     render() { 
-
+        
         if (this.props.details === null) {
-            return null;
+            return <div className="container"><p className="has-text-centered">Loading...</p></div>;
+        }
+        
+        if (this.props.movieId !== parseInt(this.props.match.params.id, 10)) {
+            return <div className="container"><p className="has-text-centered">Loading...</p></div>;
         }
         
         let movie = this.props.details;
@@ -50,7 +54,8 @@ class MovieDetails extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        details: state.movies.movie_details
+        details: state.movies.movie_details,
+        movieId: state.movies.current_movie_details_id
     }
 }
 

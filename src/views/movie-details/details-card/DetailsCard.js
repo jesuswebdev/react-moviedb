@@ -2,20 +2,22 @@ import React from 'react';
 
 const DetailsCard = ({movie}) => {
 
-    let genres = movie.genres.map(genre => genre.name).join(', ');
-    let imdbButton = movie.imdb_id ?
+    const genres = movie.genres.map(genre => genre.name).join(', ');
+    const imdbButton = movie.imdb_id ?
                         <a href={`https://www.imdb.com/title/${movie.imdb_id}`} className="card-footer-item">Visit IMDb</a> :
                         null;
     
-    let homepageButton = movie.homepage ? 
+    const homepageButton = movie.homepage ? 
                         <a href={movie.homepage} className="card-footer-item">Visit Homepage</a> :
                         null;
+    const releaseDate = new Date(movie.release_date);
+    const releaseYear = releaseDate.getFullYear();
 
     return (
         <div className="card">
             <div className="card-content">
                 <div className="title is-3">
-                    {movie.title}
+                    {movie.title} ({releaseYear})
                 </div>
                 <div className="subtitle is-6">{genres}</div>
 

@@ -6,7 +6,7 @@ import * as movieActions from './actions';
 
 export function* fetchTrendingMoviesSaga(action) {
     try {
-        let url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`
+        const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`
         const response = yield call(axios.get, url);
         yield put(movieActions.fetchTrendingMoviesSuccess(response.data.results));
     } catch(e) {
