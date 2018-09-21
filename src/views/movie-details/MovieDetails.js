@@ -1,14 +1,63 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+
+import * as moviesActions from '../../state/movies/actions';
+import { IMG_URL } from '../../config';
+import InfoCard from './info-card/InfoCard';
+import DetailsCard from './details-card/DetailsCard';
 
 class MovieDetails extends Component {
 
+    componentDidMount() {
+        this.props.getMovieDetails(this.props.match.params.id);
+    }
+
     render() { 
+
+        if (this.props.details === null) {
+            return null;
+        }
         
-        let id = this.props.match.params.id;
+        let movie = this.props.details;
+        let img = `${IMG_URL}${movie.poster_path}`;
+
         return (
-            <p>Movie N°{id} details component</p>
+            <div className="container">
+                <div className="columns is-mobile is-tablet is-desktop is-multiline">
+                    <div className="column is-offset-1-mobile is-10-mobile is-half-tablet is-half-desktop">
+                        <div className="card">
+                            <div className="card-image">
+                                <figure className="image">
+                                    <img src={img} alt={movie.title} />
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="column is-offset-1-mobile is-10-mobile is-half-tablet is-half-desktop">
+                        <DetailsCard movie={movie} />
+                    </div>
+                </div>
+
+                <div className="columns is-mobile is-tablet is-desktop">
+                    <div className="column is-offset-1-mobile is-10-mobile">
+                        <InfoCard movie={movie} />
+                    </div>
+                </div>
+            </div>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        details: state.movies.movie_details
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getMovieDetails: (movie_id) => { dispatch(moviesActions.fetchMovieDetails(movie_id)) }
+    }
+}
  
-export default MovieDetails;
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

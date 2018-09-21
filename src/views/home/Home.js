@@ -10,13 +10,9 @@ class Home extends Component {
         this.props.getTrendingMovies();
     }
 
-
     render() {
-
-        console.log(this.props.trendingMovies);
         return (
             <div>
-                <p>Home Component {this.props.trendingMovies.length}</p>
                 <TrendingMovies movies={this.props.trendingMovies}/>
             </div>
         );

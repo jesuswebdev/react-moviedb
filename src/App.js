@@ -11,7 +11,7 @@ class App extends Component {
       <BrowserRouter>
         <Layout>
           <Switch>
-            <Route path="/movie/:id" component={MovieDetails} />
+            <Route path="/movies/:id" component={MovieDetails} />
             <Route path="/search/:query" component={SearchResults} />
             <Route path="/" exact component={Home} />
             <Redirect to="/" />

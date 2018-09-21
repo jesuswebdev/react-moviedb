@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getMovieGenres } from '../../utils';
+import { IMG_URL } from '../../config';
 
 const MovieCardItem = ({movie}) => {
-    console.log(movie);
 
-    let img = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    let img = `${IMG_URL}${movie.poster_path}`;
     let originalTitle = movie.title !== movie.original_title ? ` (${movie.original_title})` : null;
     let detailsLink = `/movies/${movie.id}`;
     let genres = getMovieGenres(movie.genre_ids);

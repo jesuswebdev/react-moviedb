@@ -27,7 +27,7 @@ const reducer = (state = moviesInitialState, action) => {
         case moviesActions.FETCH_MOVIE_DETAILS_SUCCESS: {
             return {
                 ...state,
-                movie_details: action.payload.details,
+                movie_details: action.payload.movieDetails,
                 movie_details_error: false
             }
         }

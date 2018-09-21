@@ -1,12 +1,12 @@
 import React from 'react';
 import MovieCardItem from '../../../components/movie-card-item/MovieCardItem';
 
-const TrendingMovies = (props) => {
+const TrendingMovies = ({movies}) => {
 
     let peliculas = null;
 
-    if (props.movies.length > 0) {
-        peliculas = props.movies.map((movie) => <MovieCardItem key={movie.id} movie={movie} />);
+    if (movies.length > 0) {
+        peliculas = movies.map((movie) => <MovieCardItem key={movie.id} movie={movie} />);
     }
 
     return (
