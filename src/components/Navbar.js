@@ -2,6 +2,27 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import { NavLink } from 'react-router-dom';
 
+const onClickBurgerMenu = () => {
+    let menu = document.querySelector('.navbar-menu');
+    let burger = document.querySelector('.navbar-burger');
+
+    burger.classList.toggle('is-active');
+    menu.classList.toggle('is-active');
+}
+
+const onCloseBurgerMenu = () => {
+    let menu = document.querySelector('.navbar-menu');
+    let burger = document.querySelector('.navbar-burger');
+
+    if (menu.classList.contains('is-active')) {
+        menu.classList.remove('is-active');
+    }
+
+    if (burger.classList.contains('is-active')) {
+        burger.classList.remove('is-active');
+    }
+}
+
 const Header = () => {
 
     const styles = {
@@ -20,12 +41,18 @@ const Header = () => {
                 <h4 style={verticalAlignStyle}>
                     MovieFinder
                 </h4>
+
+                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" onClick={onClickBurgerMenu}>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
             </div>
             <div className="navbar-menu">
                 <div className="navbar-start">
-                    <NavLink to='/' className='navbar-item'>Home</NavLink>
+                    <NavLink to='/' className='navbar-item' onClick={onCloseBurgerMenu} >Home</NavLink>
                 </div>
-                <div className="navbar-end" style={verticalAlignStyle}>
+                <div className="navbar-end is-hidden-touch" style={verticalAlignStyle}>
                     <SearchBar />
                 </div>
             </div>

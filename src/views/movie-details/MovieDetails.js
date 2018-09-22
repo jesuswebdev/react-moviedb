@@ -26,7 +26,7 @@ class MovieDetails extends Component {
         let img = `${IMG_URL}${movie.poster_path}`;
 
         return (
-            <div className="container">
+            <div className="container" style={{minHeight: '85vh'}}>
                 <div className="columns is-mobile is-tablet is-desktop is-multiline">
                     <div className="column is-offset-1-mobile is-10-mobile is-half-tablet is-half-desktop">
                         <div className="card">

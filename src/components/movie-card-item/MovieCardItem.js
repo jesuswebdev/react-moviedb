@@ -22,7 +22,7 @@ const MovieCardItem = ({movie}) => {
     }
 
     return (
-        <div className="column is-offset-1-mobile is-4-desktop is-5-tablet is-10-mobile">
+        <div className="column is-offset-1-touch is-4-desktop is-5-tablet is-10-mobile">
             <div className="card">
                 <div className="card-image">
                     <Link to={detailsLink}>
