@@ -38,7 +38,7 @@ class MovieDetails extends Component {
 
         return (
             <div className="container" style={{minHeight: '85vh'}}>
-                <div className="columns is-mobile is-centered">
+                <div className="columns is-mobile is-centered is-multiline">
                     <div className="column is-10-mobile is-5-tablet is-5-desktop">
                         <div className="card">
                             <div className="card-image">

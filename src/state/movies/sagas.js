@@ -33,3 +33,14 @@ export function* fetchMovieCastSaga(action) {
         yield put(movieActions.fetcMovieCastFail());
     }
 }
+
+export function* fetchTopMoviesSaga(action) {
+    try {
+        const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
+        const {data: {results}} = yield call(axios.get, url);
+        console.log(results);
+        yield put(movieActions.fetchTopMoviesSuccess(results));
+    } catch(e) {
+        yield put(movieActions.fetchTopMoviesFail())
+    }
+}

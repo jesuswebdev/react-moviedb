@@ -67,6 +67,21 @@ const showFullCast = (state, action) => {
     }
 }
 
+const fetchTopMoviesSuccess = (state, action) => {
+    return {
+        ...state,
+        top: [...action.payload.movies],
+        top_error: false
+    }
+}
+
+const fetchTopMoviesFail = (state, action) => {
+    return {
+        ...state,
+        top_error: true
+    }
+}
+
 const reducer = (state = moviesInitialState, action) => {
     switch (action.type) {
         case moviesActions.FETCH_TRENDING_MOVIES_SUCCESS: return fetchTrendingMoviesSuccess(state,action)
@@ -76,6 +91,8 @@ const reducer = (state = moviesInitialState, action) => {
         case moviesActions.FETCH_MOVIE_CAST_SUCCESS: return fetchMovieCastSuccess(state, action)
         case moviesActions.FETCH_MOVIE_CAST_FAIL: return fetchMovieCastFail(state, action)
         case moviesActions.SHOW_FULL_CAST: return showFullCast(state, action)
+        case moviesActions.FETCH_TOP_MOVIES_SUCCESS: return fetchTopMoviesSuccess(state, action)
+        case moviesActions.FETCH_TOP_MOVIES_FAIL: return fetchTopMoviesFail(state, action)
         default: return state;
     }
 }

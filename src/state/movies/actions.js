@@ -74,3 +74,24 @@ export const showFullCast = () => {
         type: actionTypes.SHOW_FULL_CAST
     }
 }
+
+export const fetchTopMovies = () => {
+    return {
+        type: actionTypes.REQUEST_FETCH_TOP_MOVIES
+    }
+}
+
+export const fetchTopMoviesSuccess = (movies) => {
+    return {
+        type: actionTypes.FETCH_TOP_MOVIES_SUCCESS,
+        payload: {
+            movies
+        }
+    }
+}
+
+export const fetchTopMoviesFail = () => {
+    return {
+        type: actionTypes.FETCH_TOP_MOVIES_FAIL
+    }
+}
