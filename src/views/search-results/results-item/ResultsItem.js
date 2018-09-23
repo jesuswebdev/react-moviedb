@@ -22,7 +22,7 @@ const ResultsItem = ({item}) => {
                         {item.overview}
                     </p>
                 </div>
-                <Link to={`/movies/${item.id}`} className="button is-info">Details</Link>
+                <Link to={`/movie/${item.id}`} className="button is-info">Details</Link>
             </div>
         </div>
     );

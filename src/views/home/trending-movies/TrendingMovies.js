@@ -10,7 +10,7 @@ const TrendingMovies = ({movies}) => {
     }
 
     return (
-        <div className="columns is-mobile is-tablet is-desktop is-multiline">
+        <div className="columns is-mobile is-multiline is-centered">
             {peliculas}
         </div>
     );

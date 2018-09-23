@@ -7,7 +7,7 @@ const MovieCardItem = ({movie}) => {
 
     let img = `${IMG_URL}${movie.poster_path}`;
     let originalTitle = movie.title !== movie.original_title ? ` (${movie.original_title})` : null;
-    let detailsLink = `/movies/${movie.id}`;
+    let detailsLink = `/movie/${movie.id}`;
     let genres = getMovieGenres(movie.genre_ids);
 
     let overview = <p className="has-text-justified">
@@ -17,12 +17,12 @@ const MovieCardItem = ({movie}) => {
     if (movie.overview.length > 160) {
         overview = <p className="has-text-justified">
                         {movie.overview.slice(0,150)}... 
-                        <Link to={`/movies/${movie.id}`}>More</Link>
+                        <Link to={`/movie/${movie.id}`}>More</Link>
                     </p>
     }
 
     return (
-        <div className="column is-offset-1-touch is-4-desktop is-5-tablet is-10-mobile">
+        <div className="column is-4-desktop is-5-tablet is-10-mobile">
             <div className="card">
                 <div className="card-image">
                     <Link to={detailsLink}>

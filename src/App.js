@@ -4,6 +4,9 @@ import Layout from './layout/Layout';
 import Home from './views/home/Home';
 import MovieDetails from './views/movie-details/MovieDetails';
 import SearchResults from './views/search-results/SearchResults';
+import Movies from './views/movies/Movies';
+import Tv from './views/tv/Tv';
+import People from './views/people/People';
 
 class App extends Component {
   render() {
@@ -11,7 +14,10 @@ class App extends Component {
       <BrowserRouter>
         <Layout>
           <Switch>
-            <Route path="/movies/:id" component={MovieDetails} />
+            <Route path="/movie/:id" component={MovieDetails} />
+            <Route path='/movies' exact component={Movies} />
+            <Route path='/tv' exact component={Tv} />
+            <Route path='/people' exact component={People} />
             <Route path="/search/:query" component={SearchResults} />
             <Route path="/" exact component={Home} />
             <Redirect to="/" />

@@ -21,7 +21,7 @@ const DetailsCard = ({movie}) => {
                 </div>
                 <div className="subtitle is-6">{genres}</div>
 
-                <p>{movie.overview}</p>
+                <p className="has-text-justified">{movie.overview}</p>
                 <br></br>
                 <p>Runtime: {movie.runtime} minutes</p>
                 <p>Rating: {movie.vote_average}/10 ({movie.vote_count} votes)</p>

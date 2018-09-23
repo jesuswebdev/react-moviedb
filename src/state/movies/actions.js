@@ -44,3 +44,33 @@ export const fetchMovieDetailsFail = () => {
         type: actionTypes.FETCH_MOVIE_DETAILS_FAIL
     }
 }
+
+export const fetchMovieCast = (id) => {
+    return {
+        type: actionTypes.REQUEST_FETCH_MOVIE_CAST,
+        payload: {
+            movie_id: id
+        }
+    }
+}
+
+export const fetchMovieCastSuccess = (cast) => {
+    return {
+        type: actionTypes.FETCH_MOVIE_CAST_SUCCESS,
+        payload: {
+            cast
+        }
+    }
+}
+
+export const fetcMovieCastFail = () => {
+    return {
+        type: actionTypes.FETCH_MOVIE_CAST_FAIL
+    }
+}
+
+export const showFullCast = () => {
+    return {
+        type: actionTypes.SHOW_FULL_CAST
+    }
+}

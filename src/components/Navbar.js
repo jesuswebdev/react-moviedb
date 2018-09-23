@@ -50,7 +50,11 @@ const Header = () => {
             </div>
             <div className="navbar-menu">
                 <div className="navbar-start">
-                    <NavLink to='/' className='navbar-item' onClick={onCloseBurgerMenu} >Home</NavLink>
+                    <NavLink to='/' exact className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >Home</NavLink>
+                    <NavLink to='/movies' className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >Movies</NavLink>
+                    <NavLink to='/tv' className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >TV Series</NavLink>
+                    <NavLink to='/people' className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >People</NavLink>
+                    <NavLink to='/search' className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >Search</NavLink>
                 </div>
                 <div className="navbar-end is-hidden-touch" style={verticalAlignStyle}>
                     <SearchBar />
