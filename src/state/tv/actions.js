@@ -20,3 +20,27 @@ export const fetchTrendingTvFail = () => {
         type: tvActionTypes.FETCH_TRENDING_TV_FAIL
     }
 }
+
+export const fetchTvDetails = (id) => {
+    return {
+        type: tvActionTypes.REQUEST_FETCH_TV_DETAILS,
+        payload: {
+            id
+        }
+    }
+}
+
+export const fetchTvDetailsSuccess = (details) => {
+    return {
+        type: tvActionTypes.FETCH_TV_DETAILS_SUCCESS,
+        payload: {
+            details
+        }
+    }
+}
+
+export const fetchTvDetailsFail = () => {
+    return {
+        type: tvActionTypes.FETCH_TV_DETAILS_FAIL
+    }
+}
