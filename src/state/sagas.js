@@ -3,10 +3,12 @@ import { takeLatest, all } from 'redux-saga/effects';
 import * as movieActionTypes from './movies/actionTypes';
 import * as searchActionTypes from './search/actionTypes';
 import * as tvActionTypes from './tv/actionTypes';
+import * as peopleActionTypes from './people/actionTypes';
 
 import { fetchTrendingMoviesSaga, fetchMovieDetailsSaga, fetchMovieCastSaga, fetchTopMoviesSaga } from './movies/sagas';
 import { searchMovieSaga } from './search/sagas';
 import { fetchTrendingTvSaga, fetchTvDetailsSaga, fetchTvCastSaga, fetchTopTvSaga } from './tv/saga';
+import { fetchPopularPeopleSaga, fetchPeopleDetailsSaga } from './people/saga';
 
 
 function* watchMovies() {
@@ -33,10 +35,18 @@ function* watchSearch() {
     ]);
 }
 
+function* watchPeople() {
+    yield all([
+        takeLatest(peopleActionTypes.REQUEST_FETCH_POPULAR_PEOPLE, fetchPopularPeopleSaga),
+        takeLatest(peopleActionTypes.REQUEST_FETCH_PEOPLE_DETAILS, fetchPeopleDetailsSaga)
+    ]);
+}
+
 export default function* rootSaga() {
     yield all([
         watchMovies(),
         watchSearch(),
-        watchTv()
+        watchTv(),
+        watchPeople()
     ]);
 }

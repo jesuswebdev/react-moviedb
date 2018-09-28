@@ -8,6 +8,7 @@ import Movies from './views/movies/Movies';
 import Tv from './views/tv/Tv';
 import People from './views/people/People';
 import TvDetails from './views/tv-details/TvDetails';
+import PeopleDetails from './views/people-details/PeopleDetails';
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path='/movies' exact component={Movies} />
             <Route path='/tv/:id' component={TvDetails} />
             <Route path='/tv' exact component={Tv} />
+            <Route path='/people/:id' component={PeopleDetails} />
             <Route path='/people' exact component={People} />
             <Route path="/search/:query" component={SearchResults} />
             <Route path="/" exact component={Home} />

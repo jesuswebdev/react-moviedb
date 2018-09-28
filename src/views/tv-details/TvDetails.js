@@ -23,13 +23,17 @@ class TvDetails extends Component {
             return <div className="container"><p className="has-text-centered">Loading...</p></div>
         }
 
+        const dummyImg = 'https://placeimg.com/500/750/animals';
+
+        const img = this.props.serie.poster_path ? IMG_URL + this.props.serie.poster_path : dummyImg;
+
         return (<div className="container">
             <div className="columns is-mobile is-centered is-multiline">
                 <div className="column is-10-mobile is-5-tablet is-5-desktop">
                     <div className="card">
                         <div className="card-image">
                             <figure className="image">
-                                <img src={IMG_URL + this.props.serie.poster_path} alt={this.props.serie.name} />
+                                <img src={img} alt={this.props.serie.name} />
                             </figure>
                         </div>
                     </div>

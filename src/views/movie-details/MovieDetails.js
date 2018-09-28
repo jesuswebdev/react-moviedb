@@ -25,7 +25,8 @@ class MovieDetails extends Component {
         }
         
         let movie = this.props.details;
-        let img = `${IMG_URL}${movie.poster_path}`;
+        const dummyImg = 'https://placeimg.com/500/750/animals';
+        let img = movie.poster_path ? `${IMG_URL}${movie.poster_path}` : dummyImg;
 
         let cast;
 

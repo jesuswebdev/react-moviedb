@@ -11,8 +11,6 @@ class Tv extends Component {
     componentDidMount() {
         this.props.getTrendingTv();
         this.props.getTopTv();
-        //get trending tv series
-        //get top tv series
     }
 
 
