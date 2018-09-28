@@ -6,7 +6,7 @@ import * as tvActionTypes from './tv/actionTypes';
 
 import { fetchTrendingMoviesSaga, fetchMovieDetailsSaga, fetchMovieCastSaga, fetchTopMoviesSaga } from './movies/sagas';
 import { searchMovieSaga } from './search/sagas';
-import { fetchTrendingTvSaga, fetchTvDetailsSaga } from './tv/saga';
+import { fetchTrendingTvSaga, fetchTvDetailsSaga, fetchTvCastSaga, fetchTopTvSaga } from './tv/saga';
 
 
 function* watchMovies() {
@@ -21,7 +21,9 @@ function* watchMovies() {
 function* watchTv() {
     yield all([
         takeLatest(tvActionTypes.REQUEST_FETCH_TRENDING_TV, fetchTrendingTvSaga),
-        takeLatest(tvActionTypes.REQUEST_FETCH_TV_DETAILS, fetchTvDetailsSaga)
+        takeLatest(tvActionTypes.REQUEST_FETCH_TOP_TV, fetchTopTvSaga),
+        takeLatest(tvActionTypes.REQUEST_FETCH_TV_DETAILS, fetchTvDetailsSaga),
+        takeLatest(tvActionTypes.REQUEST_FETCH_TV_CAST, fetchTvCastSaga)
     ]);
 }
 

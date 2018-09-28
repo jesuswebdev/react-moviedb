@@ -32,7 +32,7 @@ const TvCardItem = ({serie}) => {
                     <p className="title is-4">{serie.name}</p>
                 </Link>
                 <p className="subtitle is-6">{genres}</p>
-                <p className="subtitle is-6">Score: {serie.vote_average}/10 ({serie.vote_count} votes)</p>
+                <p className="subtitle is-6">Score: {serie.vote_count > 0 ? `${serie.vote_average}/10 (${serie.vote_count} votes)`: 'No votes yet'}</p>
                 {overview}
             </div>
             <div className="content">

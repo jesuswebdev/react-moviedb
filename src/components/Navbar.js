@@ -26,7 +26,7 @@ const onCloseBurgerMenu = () => {
 const Header = () => {
 
     const styles = {
-        marginBottom: '30px'
+        marginBottom: '10px'
     };
 
     const verticalAlignStyle = {

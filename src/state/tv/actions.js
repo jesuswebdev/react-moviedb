@@ -21,6 +21,27 @@ export const fetchTrendingTvFail = () => {
     }
 }
 
+export const fetchTopTv = () => {
+    return {
+        type: tvActionTypes.REQUEST_FETCH_TOP_TV
+    }
+}
+
+export const fetchTopTvSuccess = (series) => {
+    return {
+        type: tvActionTypes.FETCH_TOP_TV_SUCCESS,
+        payload: {
+            series
+        }
+    }
+}
+
+export const fetchTopTvFail = () => {
+    return {
+        type: tvActionTypes.FETCH_TOP_TV_FAIL
+    }
+}
+
 export const fetchTvDetails = (id) => {
     return {
         type: tvActionTypes.REQUEST_FETCH_TV_DETAILS,
@@ -42,5 +63,43 @@ export const fetchTvDetailsSuccess = (details) => {
 export const fetchTvDetailsFail = () => {
     return {
         type: tvActionTypes.FETCH_TV_DETAILS_FAIL
+    }
+}
+
+export const fetchTvCast = (id) => {
+    return {
+        type: tvActionTypes.REQUEST_FETCH_TV_CAST,
+        payload: {
+            id
+        }
+    }
+}
+
+export const fetchTvCastSuccess = (data) => {
+    return {
+        type: tvActionTypes.FETCH_TV_CAST_SUCCESS,
+        payload: {
+            cast: data.cast,
+            id: data.id
+        }
+    }
+}
+
+export const fetchTvCastFail = () => {
+    return {
+        type: tvActionTypes.FETCH_TV_CAST_FAIL
+    }
+}
+
+export const onClickShowFullCast = () => {
+    return {
+        type: tvActionTypes.ON_CLICK_SHOW_FULL_CAST
+    }
+}
+
+export const selectTab = (tab) => {
+    return {
+        type: tvActionTypes.SELECT_TAB,
+        payload: tab
     }
 }

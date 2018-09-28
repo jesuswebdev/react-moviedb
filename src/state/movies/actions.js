@@ -95,3 +95,10 @@ export const fetchTopMoviesFail = () => {
         type: actionTypes.FETCH_TOP_MOVIES_FAIL
     }
 }
+
+export const selectTab = (tab) => {
+    return {
+        type: actionTypes.SELECT_TAB,
+        payload: tab
+    }
+}

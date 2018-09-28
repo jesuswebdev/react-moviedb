@@ -10,7 +10,8 @@ const moviesInitialState = {
     movie_details_error: false,
     movie_cast: [],
     show_full_cast: false,
-    movie_cast_error: false
+    movie_cast_error: false,
+    selectedTab: 'trending'
 };
 
 const fetchTrendingMoviesSuccess = (state, action) => {
@@ -82,6 +83,18 @@ const fetchTopMoviesFail = (state, action) => {
     }
 }
 
+const selectTab = (state, action) => {
+
+    if (state.selectedTab === action.payload) {
+        return state;
+    }
+
+    return {
+        ...state,
+        selectedTab: action.payload
+    }
+}
+
 const reducer = (state = moviesInitialState, action) => {
     switch (action.type) {
         case moviesActions.FETCH_TRENDING_MOVIES_SUCCESS: return fetchTrendingMoviesSuccess(state,action)
@@ -93,6 +106,7 @@ const reducer = (state = moviesInitialState, action) => {
         case moviesActions.SHOW_FULL_CAST: return showFullCast(state, action)
         case moviesActions.FETCH_TOP_MOVIES_SUCCESS: return fetchTopMoviesSuccess(state, action)
         case moviesActions.FETCH_TOP_MOVIES_FAIL: return fetchTopMoviesFail(state, action)
+        case moviesActions.SELECT_TAB: return selectTab(state, action)
         default: return state;
     }
 }

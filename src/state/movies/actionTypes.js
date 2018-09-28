@@ -14,3 +14,5 @@ export const SHOW_FULL_CAST = 'movies/ SHOW FULL CAST';
 export const REQUEST_FETCH_TOP_MOVIES = 'movies/ REQUEST FETCH TOP MOVIES';
 export const FETCH_TOP_MOVIES_SUCCESS = 'movies/ FETCH TOP MOVIES SUCCESS';
 export const FETCH_TOP_MOVIES_FAIL = 'movies/ FETCH TOP MOVIES FAIL';
+
+export const SELECT_TAB = 'movies/ SELECT TAB';
