@@ -1,60 +1,37 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
 
-import * as searchActions from '../state/search/actions';
+const SearchBar = (props) => {
 
-class SearchBar extends Component {
+    const buttonClasses = props.isLoading ? 'button is-loading' : 'button';
 
-    onSubmitSearch(e) {
-        e.preventDefault();
-        this.props.searchMovie(this.props.query, this.props.nextPage);
-        this.props.history.push(`/search/${this.props.query}`);
-    }
-
-    onInputChange(value) {
-        this.props.queryInput(value);
-    }
-
-    render() {
-
-        const buttonClasses = this.props.isLoading ? 'button is-loading' : 'button';
-
-        return (
-            <form onSubmit={(e) => { this.onSubmitSearch(e) }}>
-                <div className="field has-addons">
-                    <div className="control">
-                        <input className="input"
-                            type="text"
-                            placeholder="Search movie..."
-                            onChange={(e) => { this.onInputChange(e.target.value) }}
-                            value={this.props.query}
-                            />
-                    </div>
-                    <div className="control">
-                        <button className={buttonClasses}>
-                            Search
-                        </button>  
-                    </div>
+    return (
+        <form onSubmit={(e) => { props.onSubmitSearch(e, props.query, props.selectedOption, props.nextPage) }}>
+            <div className="field has-addons">
+                <div className="control is-expanded">
+                    <input className="input"
+                        type="text"
+                        placeholder="Search..."
+                        onChange={(e) => { props.onInputChange(e.target.value) }}
+                        value={props.query}
+                        />
                 </div>
-            </form>
-        );
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        nextPage: state.search.loaded_pages + 1,
-        isLoading: state.search.loading,
-        query: state.search.query
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        queryInput: (input) => { dispatch(searchActions.searchQueryInput(input)); },
-        searchMovie: (query, nextPage) => { dispatch(searchActions.requestSearchMovie(query, nextPage)) }
-    }
+                <div className="control">
+                    <span className="select">
+                        <select value={props.selectedOption} onChange={(e) => { props.onSelectOption(e.target.value) }}>
+                            <option value='movie'>Movie</option>
+                            <option value='tv'>TV</option>
+                            <option value='person'>People</option>
+                        </select>
+                    </span>
+                </div>
+                <div className="control">
+                    <button className={buttonClasses}>
+                        Search
+                    </button>  
+                </div>
+            </div>
+        </form>
+    );
 }
  
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar));
+export default SearchBar;

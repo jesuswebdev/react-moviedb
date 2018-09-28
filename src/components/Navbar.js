@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchBar from './SearchBar';
 import { NavLink } from 'react-router-dom';
 
 const onClickBurgerMenu = () => {
@@ -55,9 +54,6 @@ const Header = () => {
                     <NavLink to='/tv' className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >TV Series</NavLink>
                     <NavLink to='/people' className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >People</NavLink>
                     <NavLink to='/search' className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >Search</NavLink>
-                </div>
-                <div className="navbar-end is-hidden-touch" style={verticalAlignStyle}>
-                    <SearchBar />
                 </div>
             </div>
         </nav>

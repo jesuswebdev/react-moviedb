@@ -27,7 +27,7 @@ export function* fetchMovieDetailsSaga(action) {
 export function* fetchMovieCastSaga(action) {
     try {
         const url = `https://api.themoviedb.org/3/movie/${action.payload.movie_id}/credits?api_key=${API_KEY}`;
-        const {data: {cast} = {}} = yield call(axios.get, url);
+        const {data : {cast} = {}} = yield call(axios.get, url);
         yield put(movieActions.fetchMovieCastSuccess(cast));
     } catch(e) {
         yield put(movieActions.fetcMovieCastFail());
@@ -38,7 +38,6 @@ export function* fetchTopMoviesSaga(action) {
     try {
         const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
         const {data: {results}} = yield call(axios.get, url);
-        console.log(results);
         yield put(movieActions.fetchTopMoviesSuccess(results));
     } catch(e) {
         yield put(movieActions.fetchTopMoviesFail())

@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as movieActions from '../../state/movies/actions';
-import TrendingMovies from '../../components/trending-movies/TrendingMovies';
-import TopMovies from '../../components/top-movies/TopMovies';
+import TrendingMovies from './trending-movies/TrendingMovies';
+import TopMovies from './top-movies/TopMovies';
+import Spinner from '../../components/Spinner';
 
 class Movies extends Component {
 
@@ -13,7 +14,16 @@ class Movies extends Component {
         this.props.getTrendingMovies();
     }
 
-    render() { 
+    render() {
+
+        if (this.props.selectedTab === 'trending' && this.props.trending.length < 1) {
+            return <Spinner />;
+        }
+
+        if (this.props.selectedTab === 'top' && this.props.top.length < 1) {
+            return <Spinner />
+        }
+
         return (
             <div className="container" style={{minHeight: '85vh'}}>
                 <div className="tabs is-centered is-boxed">

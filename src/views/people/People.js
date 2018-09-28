@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import * as peopleActions from '../../state/people/actions';
 import PeopleCard from './people-card/PeopleCard';
+import Spinner from '../../components/Spinner';
 
 class People extends Component {
 
@@ -12,13 +13,9 @@ class People extends Component {
 
     render() {
 
-        console.log(this.props.people);
-
         if (!this.props.people || this.props.people.length < 1) {
-            return <p>Loading...</p>
+            return <Spinner />
         }
-
-        console.log(this.props.people);
 
         let people = this.props.people.map(person => {
             return (
@@ -29,7 +26,7 @@ class People extends Component {
         })
 
         return (
-            <div className="container">
+            <div className="container" style={{minHeight: '85vh'}}>
                 <div className="columns is-mobile is-centered is-multiline">
                     {people}
                 </div>

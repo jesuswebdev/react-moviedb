@@ -6,7 +6,7 @@ import * as tvActionTypes from './tv/actionTypes';
 import * as peopleActionTypes from './people/actionTypes';
 
 import { fetchTrendingMoviesSaga, fetchMovieDetailsSaga, fetchMovieCastSaga, fetchTopMoviesSaga } from './movies/sagas';
-import { searchMovieSaga } from './search/sagas';
+import { searchSaga } from './search/sagas';
 import { fetchTrendingTvSaga, fetchTvDetailsSaga, fetchTvCastSaga, fetchTopTvSaga } from './tv/saga';
 import { fetchPopularPeopleSaga, fetchPeopleDetailsSaga } from './people/saga';
 
@@ -31,7 +31,7 @@ function* watchTv() {
 
 function* watchSearch() {
     yield all([
-        takeLatest(searchActionTypes.REQUEST_SEARCH_MOVIE, searchMovieSaga)
+        takeLatest(searchActionTypes.REQUEST_SEARCH, searchSaga)
     ]);
 }
 

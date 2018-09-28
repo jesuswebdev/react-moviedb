@@ -7,6 +7,7 @@ import DetailsCard from './details-card/DetailsCard';
 import Creators from './creators/Creators';
 import Cast from './cast/Cast';
 import Seasons from './seasons/Seasons';
+import Spinner from '../../components/Spinner';
 
 class TvDetails extends Component {
 
@@ -17,10 +18,10 @@ class TvDetails extends Component {
 
     render() {
         if (!this.props.serie) {
-            return <div className="container"><p className="has-text-centered">Loading...</p></div>
+            return <Spinner />;
         }
         if (parseInt(this.props.match.params.id, 10) !== this.props.serie.id) {
-            return <div className="container"><p className="has-text-centered">Loading...</p></div>
+            return <Spinner />;
         }
 
         const dummyImg = 'https://placeimg.com/500/750/animals';

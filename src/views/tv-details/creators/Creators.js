@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Creators = ({creators}) => {
 
@@ -15,7 +16,9 @@ const Creators = ({creators}) => {
                         <img src={creatorsItem.profile_path ? url + creatorsItem.profile_path : dummyImg } alt={creatorsItem.name} />
                     </td>
                     <td style={vAlign}>
-                        {creatorsItem.name}
+                        <Link to={'/people/' + creatorsItem.id}>
+                            {creatorsItem.name}
+                        </Link>
                     </td>
                 </tr>)
             })

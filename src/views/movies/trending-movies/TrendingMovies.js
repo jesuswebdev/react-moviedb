@@ -1,7 +1,7 @@
 import React from 'react';
-import MovieCardItem from '../../components/movie-card-item/MovieCardItem';
+import MovieCardItem from '../movie-card-item/MovieCardItem';
 
-const TopMovies = ({movies}) => {
+const TrendingMovies = ({movies}) => {
 
     let peliculas = null;
 
@@ -17,4 +17,4 @@ const TopMovies = ({movies}) => {
 
 }
 
-export default TopMovies;
+export default TrendingMovies;

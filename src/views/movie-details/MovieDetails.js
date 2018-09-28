@@ -6,6 +6,7 @@ import { IMG_URL } from '../../config';
 import InfoCard from './info-card/InfoCard';
 import DetailsCard from './details-card/DetailsCard';
 import CastCard from './cast-card/CastCard';
+import Spinner from '../../components/Spinner';
 
 class MovieDetails extends Component {
 
@@ -17,11 +18,11 @@ class MovieDetails extends Component {
     render() { 
         
         if (this.props.details === null) {
-            return <div className="container"><p className="has-text-centered">Loading...</p></div>;
+            return <Spinner />;
         }
         
         if (this.props.movieId !== parseInt(this.props.match.params.id, 10)) {
-            return <div className="container"><p className="has-text-centered">Loading...</p></div>;
+            return <Spinner />;
         }
         
         let movie = this.props.details;

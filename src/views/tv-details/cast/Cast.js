@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Cast = (props) => {
 
@@ -16,7 +17,9 @@ const Cast = (props) => {
                         <img src={castItem.profile_path ? url + castItem.profile_path : dummyImg } alt={castItem.name} />
                     </td>
                     <td style={vAlign}>
-                        {castItem.name}
+                        <Link to={'/people/' + castItem.id}>
+                            {castItem.name}
+                        </Link>
                     </td>
                     <td style={vAlign}>...</td>
                     <td style={vAlign}>

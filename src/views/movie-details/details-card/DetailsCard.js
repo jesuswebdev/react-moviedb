@@ -24,7 +24,7 @@ const DetailsCard = ({movie}) => {
                 <p className="has-text-justified">{movie.overview}</p>
                 <br></br>
                 <p>Runtime: {movie.runtime} minutes</p>
-                <p>Rating: {movie.vote_average}/10 ({movie.vote_count} votes)</p>
+                <p>Rating: {movie.vote_count > 0 ? `${movie.vote_average}/10 (${movie.vote_count} votes)` : 'No votes yet'} </p>
                 <p>Release Date: {movie.release_date}</p>
             </div>
             <div className="card-footer">

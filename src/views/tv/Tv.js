@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as tvActions from '../../state/tv/actions';
 import TrendingTv from './trending-tv/TrendingTv';
 import TopTv from './top-tv/TopTv';
+import Spinner from '../../components/Spinner';
 
 class Tv extends Component {
 
@@ -14,7 +15,16 @@ class Tv extends Component {
     }
 
 
-    render() { 
+    render() {
+
+        if (this.props.selectedTab === 'trending' && this.props.trending.length < 1) {
+            return <Spinner />;
+        }
+
+        if (this.props.selectedTab === 'top' && this.props.top.length < 1) {
+            return <Spinner />;
+        }
+        
         return (
             <div className="container">
                 <div className="tabs is-centered is-boxed">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getMovieGenres } from '../../utils';
-import { IMG_URL } from '../../config';
+import { getMovieGenres } from '../../../utils';
+import { IMG_URL } from '../../../config';
 
 const MovieCardItem = ({movie}) => {
 
@@ -37,7 +37,7 @@ const MovieCardItem = ({movie}) => {
                         <p className="title is-4">{movie.title}{originalTitle}</p>
                     </Link>
                     <p className="subtitle is-6">{genres}</p>
-                    <p className="subtitle is-6">Score: {movie.vote_average}/10 ({movie.vote_count} votes)</p>
+                    <p className="subtitle is-6">Score: {movie.vote_count > 0 ? `${movie.vote_average}/10 (${movie.vote_count} votes)` : 'No votes yet'}</p>
                     {overview}
                 </div>
 

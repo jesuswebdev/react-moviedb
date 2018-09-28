@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import Layout from './layout/Layout';
 import Home from './views/home/Home';
 import MovieDetails from './views/movie-details/MovieDetails';
-import SearchResults from './views/search-results/SearchResults';
+import Search from './views/search/Search';
 import Movies from './views/movies/Movies';
 import Tv from './views/tv/Tv';
 import People from './views/people/People';
@@ -22,7 +22,7 @@ class App extends Component {
             <Route path='/tv' exact component={Tv} />
             <Route path='/people/:id' component={PeopleDetails} />
             <Route path='/people' exact component={People} />
-            <Route path="/search/:query" component={SearchResults} />
+            <Route path="/search" component={Search} />
             <Route path="/" exact component={Home} />
             <Redirect to="/" />
           </Switch>
