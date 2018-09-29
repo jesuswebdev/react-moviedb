@@ -19,7 +19,7 @@ const DetailsCard = ({details}) => {
                     
                 </div>
                 <div className="content">
-                    <p>Birhday: {details.birthday}</p>
+                    {details.birthday ? <p>Birthday: {details.birthday}</p> : null}
                     {details.place_of_birth ? <p>Place of birth: {details.place_of_birth} </p> : null }
                 </div>
             </div>

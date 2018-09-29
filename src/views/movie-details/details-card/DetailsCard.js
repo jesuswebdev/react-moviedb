@@ -17,7 +17,7 @@ const DetailsCard = ({movie}) => {
         <div className="card">
             <div className="card-content">
                 <div className="title is-3">
-                    {movie.title} ({releaseYear})
+                    {movie.title} {movie.release_date ? `(${releaseYear})` : null} 
                 </div>
                 <div className="subtitle is-6">{genres}</div>
 

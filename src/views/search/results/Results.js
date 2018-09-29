@@ -42,11 +42,13 @@ class Results extends Component {
         }
     
         return (
-            <div>
-                <p className="has-text-centered">
-                    {this.props.totalResults} results
-                </p>
-                {results}
+            <div className="columns is-mobile is-centered">
+                <div className="column is-10-mobile is-8-tablet is-8-desktop">
+                    <p className="has-text-centered">
+                        {this.props.totalResults} results
+                    </p>
+                    {results}
+                </div>
             </div>
         )
     }

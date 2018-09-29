@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as peopleActions from '../../state/people/actions';
 import PeopleCard from './people-card/PeopleCard';
 import Spinner from '../../components/Spinner';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 class People extends Component {
 
@@ -13,7 +14,6 @@ class People extends Component {
 
     styles = {
         minHeight: '85vh',
-        marginTop: '10px',
         marginBottom: '30px'
     }
 
@@ -31,8 +31,13 @@ class People extends Component {
             );
         })
 
+        const breadcrumbLinks = [
+            {to: '/people', name: 'people'}
+        ];
+
         return (
             <div className="container" style={this.styles}>
+                <Breadcrumbs links={breadcrumbLinks} />
                 <div className="columns is-mobile is-centered is-multiline">
                     {people}
                 </div>

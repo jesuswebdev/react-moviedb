@@ -13,3 +13,15 @@ export const getTvGenres = (serieGenres) => {
     .filter(genre => genre !== null)
     .join(', ');
 }
+
+export const moneyPipe = (value) => {
+    if (value / 1000000 > 1) {
+       return Math.floor(value/1000000).toLocaleString('en').concat(' M');
+    }
+
+    if (value / 100000 > 1) {
+       return Math.floor(value/100000).toLocaleString('en').concat(' K');
+    }
+
+    return value.toLocaleString('en');
+}

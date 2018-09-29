@@ -1,18 +1,11 @@
 import React from 'react';
-
-const moneyPipe = (value) => {
-    if (value / 1000000 > 0) {
-       return Math.floor(value/1000000).toLocaleString('en').concat(' M');
-    }
-
-    if (value / 100000 > 0) {
-       return Math.floor(value/100000).toLocaleString('en').concat(' K');
-    }
-
-    return value.toLocaleString('en');
-}
+import { moneyPipe } from '../../../utils';
 
 const InfoCard = ({movie}) => {
+
+    if (movie.production_companies.length === 0 && movie.budget === 0 && movie.revenue === 0) {
+        return null;
+    }
 
     let production_companies = movie.production_companies.map(company => company.name).join(', ');
 
@@ -26,12 +19,14 @@ const InfoCard = ({movie}) => {
 
             <div className="card-content">
                 <div className="content">
-                    <p>Budget: ${moneyPipe(movie.budget)}</p>
-                    <p>Gross: ${moneyPipe(movie.revenue)}</p>
+                    {movie.budget > 0 ? <p>Budget: ${moneyPipe(movie.budget)}</p> : null}
+                    {movie.revenue > 0 ? <p>Gross: ${moneyPipe(movie.revenue)}</p> : null}
                 </div>
-                <div className="content">
-                    <p>Production Compan{movie.production_companies.length > 1 ? 'ies' : 'y'}: {production_companies}</p>
-                </div>
+                {movie.production_companies.length > 0 ? 
+                    <div className="content">
+                        <p>Production Compan{movie.production_companies.length > 1 ? 'ies' : 'y'}: {production_companies}</p>
+                    </div> : 
+                    null}
             </div>
             
         </div>

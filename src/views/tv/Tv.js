@@ -6,6 +6,7 @@ import * as tvActions from '../../state/tv/actions';
 import TrendingTv from './trending-tv/TrendingTv';
 import TopTv from './top-tv/TopTv';
 import Spinner from '../../components/Spinner';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 class Tv extends Component {
 
@@ -16,7 +17,6 @@ class Tv extends Component {
 
     styles = {
         minHeight: '85vh',
-        marginTop: '10px',
         marginBottom: '30px'
     }
 
@@ -29,9 +29,14 @@ class Tv extends Component {
         if (this.props.selectedTab === 'top' && this.props.top.length < 1) {
             return <Spinner />;
         }
+
+        const breadcrumbLinks = [
+            {to: '/tv', name: 'tv'}
+        ];
         
         return (
             <div className="container" style={this.styles}>
+                <Breadcrumbs links={breadcrumbLinks} />
                 <div className="tabs is-centered is-boxed">
                     <ul>
                         <li className={this.props.selectedTab === 'trending' ? 'is-active' : null} onClick={() => this.props.selectTab('trending')}>

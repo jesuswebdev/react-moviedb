@@ -1,6 +1,11 @@
 import React from 'react';
 
 const Biography = ({bio}) => {
+
+    if (!bio) {
+        return null;
+    }
+
     return (
         <div className="columns is-mobile is-centered">
             <div className="column is-10-mobile is-10-tablet is-10-desktop">

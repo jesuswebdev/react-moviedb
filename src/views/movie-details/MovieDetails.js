@@ -7,6 +7,7 @@ import InfoCard from './info-card/InfoCard';
 import DetailsCard from './details-card/DetailsCard';
 import CastCard from './cast-card/CastCard';
 import Spinner from '../../components/Spinner';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 class MovieDetails extends Component {
 
@@ -17,7 +18,6 @@ class MovieDetails extends Component {
 
     styles = {
         minHeight: '85vh',
-        marginTop: '10px',
         marginBottom: '30px'
     }
 
@@ -44,8 +44,14 @@ class MovieDetails extends Component {
             cast = <CastCard cast={this.props.cast} showFullCast />;
         }
 
+        const breadcrumbLinks = [
+            {to: '/movies', name: 'movie'},
+            {to: '/movie/' + movie.id, name: movie.title}
+        ];
+
         return (
             <div className="container" style={this.styles}>
+                <Breadcrumbs links={breadcrumbLinks} />
                 <div className="columns is-mobile is-centered is-multiline">
                     <div className="column is-10-mobile is-5-tablet is-5-desktop">
                         <div className="card">

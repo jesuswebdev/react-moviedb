@@ -4,18 +4,24 @@ import { connect } from 'react-redux';
 import * as searchActions from '../../state/search/actions';
 import SearchBar from '../../components/SearchBar';
 import Results from './results/Results';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 class Search extends Component {
 
     styles = {
         minHeight: '85vh',
-        marginTop: '10px',
         marginBottom: '30px'
     }
 
     render() {
+
+        const breadcrumbLinks = [
+            {to: '/search', name: 'search'}
+        ];
+
         return (
             <div className="container" style={this.styles}>
+                <Breadcrumbs links={breadcrumbLinks} />
                 <div className="columns is-mobile is-centered">
                     <div className="column is-10-mobile is-8-tablet is-6-desktop">
                         <SearchBar

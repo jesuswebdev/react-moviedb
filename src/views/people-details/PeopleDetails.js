@@ -6,6 +6,7 @@ import DetailsCard from './details-card/DetailsCard';
 import Spinner from '../../components/Spinner';
 import Biography from './biography/Biography';
 import Credits from './credits/Credits';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 class PeopleDetails extends Component {
 
@@ -16,9 +17,8 @@ class PeopleDetails extends Component {
 
     styles = {
         minHeight: '85vh',
-        marginTop: '10px',
         marginBottom: '30px'
-    }
+    };
 
     render() { 
         if (!this.props.details) {
@@ -32,9 +32,14 @@ class PeopleDetails extends Component {
         const url = "https://image.tmdb.org/t/p/h632";
         const dummyImg = 'https://placeimg.com/500/750/animals';
         const img = this.props.details.profile_path ? url + this.props.details.profile_path : dummyImg;
+        const breadcrumbLinks = [
+            {to: '/people', name: 'people'},
+            {to: '/people/' + this.props.details.id, name: this.props.details.name}
+        ];
 
         return (
             <div className="container" style={this.styles}>
+                <Breadcrumbs links={breadcrumbLinks} />
                 <div className="columns is-mobile is-centered is-multiline">
                     <div className="column is-10-mobile is-5-tablet is-5-desktop">
                         <div className="card">

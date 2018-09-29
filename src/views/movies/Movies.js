@@ -6,6 +6,7 @@ import * as movieActions from '../../state/movies/actions';
 import TrendingMovies from './trending-movies/TrendingMovies';
 import TopMovies from './top-movies/TopMovies';
 import Spinner from '../../components/Spinner';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 class Movies extends Component {
 
@@ -16,7 +17,6 @@ class Movies extends Component {
 
     styles = {
         minHeight: '85vh',
-        marginTop: '10px',
         marginBottom: '30px'
     }
 
@@ -30,8 +30,13 @@ class Movies extends Component {
             return <Spinner />
         }
 
+        const breadcrumbLinks = [
+            {to: '/movies', name: 'movie'}
+        ];
+
         return (
             <div className="container" style={this.styles}>
+                <Breadcrumbs links={breadcrumbLinks} />
                 <div className="tabs is-centered is-boxed">
                     <ul>
                         <li className={this.props.selectedTab === 'trending' ? 'is-active' : null} onClick={() => this.props.selectTab('trending')}>

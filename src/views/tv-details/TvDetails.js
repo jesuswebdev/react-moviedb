@@ -8,6 +8,7 @@ import Creators from './creators/Creators';
 import Cast from './cast/Cast';
 import Seasons from './seasons/Seasons';
 import Spinner from '../../components/Spinner';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 class TvDetails extends Component {
 
@@ -18,7 +19,6 @@ class TvDetails extends Component {
 
     styles = {
         minHeight: '85vh',
-        marginTop: '10px',
         marginBottom: '30px'
     }
 
@@ -34,7 +34,13 @@ class TvDetails extends Component {
 
         const img = this.props.serie.poster_path ? IMG_URL + this.props.serie.poster_path : dummyImg;
 
+        const breadcrumbLinks = [
+            {to: '/tv', name: 'tv'},
+            {to: '/tv/' + this.props.serie.id, name: this.props.serie.name}
+        ];
+
         return (<div className="container" style={this.styles}>
+            <Breadcrumbs links={breadcrumbLinks} />
             <div className="columns is-mobile is-centered is-multiline">
                 <div className="column is-10-mobile is-5-tablet is-5-desktop">
                     <div className="card">

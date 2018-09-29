@@ -15,7 +15,7 @@ const Credits = ({credits}) => {
             <tr key={'' + credit.media_type + credit.id + credit.character}>
                 <td>{credit.character}</td>
                 <td><Link to={url}>{credit.title || credit.name}</Link></td>
-                <td>{credit.release_date || credit.first_air_date}</td>
+                <td className="is-hidden-mobile">{credit.release_date || credit.first_air_date}</td>
             </tr>
         );
     }).filter(credit => credit !== null)
@@ -37,8 +37,8 @@ const Credits = ({credits}) => {
                                         <td>
                                             Character
                                         </td>
-                                        <td>Movie</td>
-                                        <td>Release Date</td>
+                                        <td>Movie / TV Show</td>
+                                        <td className="is-hidden-mobile">Release Date</td>
                                     </tr>
                                 </thead>
                                 <tbody>
