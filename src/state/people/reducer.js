@@ -5,7 +5,9 @@ const initialState = {
     people_error: false,
     people_details: null,
     people_details_error: false,
-    people_details_id: null
+    people_details_id: null,
+    credits: [],
+    credits_error: false
 }
 
 const fetchPeopleSuccess = (state, action) => {
@@ -39,12 +41,29 @@ const fetchPeopleDetailsFail = (state, action) => {
     }
 }
 
+const fetchPeopleCreditsSuccess = (state, action) => {
+    return {
+        ...state,
+        credits: [...action.payload.credits],
+        credits_error: false
+    }
+}
+
+const fetchPeopleCreditsFail = (state, action) => {
+    return {
+        ...state,
+        credits_error: true
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_POPULAR_PEOPLE_SUCCESS: return fetchPeopleSuccess(state, action)
         case actionTypes.FETCH_POPULAR_PEOPLE_FAIL: return fetchPeopleFail(state, action)
         case actionTypes.FETCH_PEOPLE_DETAILS_SUCCESS: return fetchPeopleDetailsSuccess(state, action)
         case actionTypes.FETCH_PEOPLE_DETAILS_FAIL: return fetchPeopleDetailsFail(state, action)
+        case actionTypes.FETCH_PEOPLE_CREDITS_SUCCESS: return fetchPeopleCreditsSuccess(state, action)
+        case actionTypes.FETCH_PEOPLE_CREDITS_FAIL: return fetchPeopleCreditsFail(state, action)        
         default: return state;
     }
 }

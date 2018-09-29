@@ -15,6 +15,12 @@ class MovieDetails extends Component {
         this.props.getMovieCast(this.props.match.params.id);
     }
 
+    styles = {
+        minHeight: '85vh',
+        marginTop: '10px',
+        marginBottom: '30px'
+    }
+
     render() { 
         
         if (this.props.details === null) {
@@ -39,7 +45,7 @@ class MovieDetails extends Component {
         }
 
         return (
-            <div className="container" style={{minHeight: '85vh'}}>
+            <div className="container" style={this.styles}>
                 <div className="columns is-mobile is-centered is-multiline">
                     <div className="column is-10-mobile is-5-tablet is-5-desktop">
                         <div className="card">

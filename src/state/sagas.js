@@ -8,7 +8,7 @@ import * as peopleActionTypes from './people/actionTypes';
 import { fetchTrendingMoviesSaga, fetchMovieDetailsSaga, fetchMovieCastSaga, fetchTopMoviesSaga } from './movies/sagas';
 import { searchSaga } from './search/sagas';
 import { fetchTrendingTvSaga, fetchTvDetailsSaga, fetchTvCastSaga, fetchTopTvSaga } from './tv/saga';
-import { fetchPopularPeopleSaga, fetchPeopleDetailsSaga } from './people/saga';
+import { fetchPopularPeopleSaga, fetchPeopleDetailsSaga, fetchPeopleCreditsSaga } from './people/saga';
 
 
 function* watchMovies() {
@@ -38,7 +38,8 @@ function* watchSearch() {
 function* watchPeople() {
     yield all([
         takeLatest(peopleActionTypes.REQUEST_FETCH_POPULAR_PEOPLE, fetchPopularPeopleSaga),
-        takeLatest(peopleActionTypes.REQUEST_FETCH_PEOPLE_DETAILS, fetchPeopleDetailsSaga)
+        takeLatest(peopleActionTypes.REQUEST_FETCH_PEOPLE_DETAILS, fetchPeopleDetailsSaga),
+        takeLatest(peopleActionTypes.REQUEST_FETCH_PEOPLE_CREDITS, fetchPeopleCreditsSaga)
     ]);
 }
 

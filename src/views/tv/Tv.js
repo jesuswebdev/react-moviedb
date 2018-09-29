@@ -14,6 +14,11 @@ class Tv extends Component {
         this.props.getTopTv();
     }
 
+    styles = {
+        minHeight: '85vh',
+        marginTop: '10px',
+        marginBottom: '30px'
+    }
 
     render() {
 
@@ -26,7 +31,7 @@ class Tv extends Component {
         }
         
         return (
-            <div className="container">
+            <div className="container" style={this.styles}>
                 <div className="tabs is-centered is-boxed">
                     <ul>
                         <li className={this.props.selectedTab === 'trending' ? 'is-active' : null} onClick={() => this.props.selectTab('trending')}>

@@ -24,9 +24,9 @@ const onCloseBurgerMenu = () => {
 
 const Header = () => {
 
-    const styles = {
-        marginBottom: '10px'
-    };
+    // const styles = {
+    //     marginBottom: '10px'
+    // };
 
     const verticalAlignStyle = {
         display: 'flex',
@@ -35,7 +35,7 @@ const Header = () => {
     }
 
     return (
-        <nav className="navbar is-dark" aria-label="main navigation" style={styles}>
+        <nav className="navbar is-dark" aria-label="main navigation">
             <div className="navbar-brand">
                 <h4 style={verticalAlignStyle}>
                     MovieFinder

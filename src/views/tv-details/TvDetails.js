@@ -16,6 +16,12 @@ class TvDetails extends Component {
         this.props.fetchTvCast(this.props.match.params.id);
     }
 
+    styles = {
+        minHeight: '85vh',
+        marginTop: '10px',
+        marginBottom: '30px'
+    }
+
     render() {
         if (!this.props.serie) {
             return <Spinner />;
@@ -28,7 +34,7 @@ class TvDetails extends Component {
 
         const img = this.props.serie.poster_path ? IMG_URL + this.props.serie.poster_path : dummyImg;
 
-        return (<div className="container">
+        return (<div className="container" style={this.styles}>
             <div className="columns is-mobile is-centered is-multiline">
                 <div className="column is-10-mobile is-5-tablet is-5-desktop">
                     <div className="card">

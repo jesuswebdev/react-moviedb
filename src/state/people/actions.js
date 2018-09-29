@@ -44,3 +44,27 @@ export const fetchPeopleDetailsFail = () => {
         type: peopleActions.FETCH_PEOPLE_DETAILS_FAIL
     }
 }
+
+export const fetchPeopleCredits = (id) => {
+    return {
+        type: peopleActions.REQUEST_FETCH_PEOPLE_CREDITS,
+        payload: {
+            id
+        }
+    }
+}
+
+export const fetchPeopleCreditsSuccess = (credits) => {
+    return {
+        type: peopleActions.FETCH_PEOPLE_CREDITS_SUCCESS,
+        payload: {
+            credits
+        }
+    }
+}
+
+export const fetchPeopleCreditsFail = () => {
+    return {
+        type: peopleActions.FETCH_PEOPLE_CREDITS_FAIL
+    }
+}

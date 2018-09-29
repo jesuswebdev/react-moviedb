@@ -7,9 +7,15 @@ import Results from './results/Results';
 
 class Search extends Component {
 
+    styles = {
+        minHeight: '85vh',
+        marginTop: '10px',
+        marginBottom: '30px'
+    }
+
     render() {
         return (
-            <div className="container" style={{minHeight: '85vh'}}>
+            <div className="container" style={this.styles}>
                 <div className="columns is-mobile is-centered">
                     <div className="column is-10-mobile is-8-tablet is-6-desktop">
                         <SearchBar

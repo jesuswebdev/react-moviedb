@@ -11,6 +11,12 @@ class People extends Component {
         this.props.getPeople();
     }
 
+    styles = {
+        minHeight: '85vh',
+        marginTop: '10px',
+        marginBottom: '30px'
+    }
+
     render() {
 
         if (!this.props.people || this.props.people.length < 1) {
@@ -26,7 +32,7 @@ class People extends Component {
         })
 
         return (
-            <div className="container" style={{minHeight: '85vh'}}>
+            <div className="container" style={this.styles}>
                 <div className="columns is-mobile is-centered is-multiline">
                     {people}
                 </div>

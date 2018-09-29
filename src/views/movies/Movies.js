@@ -14,6 +14,12 @@ class Movies extends Component {
         this.props.getTrendingMovies();
     }
 
+    styles = {
+        minHeight: '85vh',
+        marginTop: '10px',
+        marginBottom: '30px'
+    }
+
     render() {
 
         if (this.props.selectedTab === 'trending' && this.props.trending.length < 1) {
@@ -25,7 +31,7 @@ class Movies extends Component {
         }
 
         return (
-            <div className="container" style={{minHeight: '85vh'}}>
+            <div className="container" style={this.styles}>
                 <div className="tabs is-centered is-boxed">
                     <ul>
                         <li className={this.props.selectedTab === 'trending' ? 'is-active' : null} onClick={() => this.props.selectTab('trending')}>

@@ -22,12 +22,6 @@ const DetailsCard = ({details}) => {
                     <p>Birhday: {details.birthday}</p>
                     {details.place_of_birth ? <p>Place of birth: {details.place_of_birth} </p> : null }
                 </div>
-
-                <div className="content">
-                    <p className="has-text-justified">
-                        {details.biography}
-                    </p>
-                </div>
             </div>
             <div className="card-footer">
                 {homepageButton}

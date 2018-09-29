@@ -4,11 +4,20 @@ import { connect } from 'react-redux';
 import * as peopleActions from '../../state/people/actions';
 import DetailsCard from './details-card/DetailsCard';
 import Spinner from '../../components/Spinner';
+import Biography from './biography/Biography';
+import Credits from './credits/Credits';
 
 class PeopleDetails extends Component {
 
     componentDidMount() {
         this.props.getDetails(this.props.match.params.id);
+        this.props.getCredits(this.props.match.params.id);
+    }
+
+    styles = {
+        minHeight: '85vh',
+        marginTop: '10px',
+        marginBottom: '30px'
     }
 
     render() { 
@@ -25,7 +34,7 @@ class PeopleDetails extends Component {
         const img = this.props.details.profile_path ? url + this.props.details.profile_path : dummyImg;
 
         return (
-            <div className="container" style={{minHeight: '85vh'}}>
+            <div className="container" style={this.styles}>
                 <div className="columns is-mobile is-centered is-multiline">
                     <div className="column is-10-mobile is-5-tablet is-5-desktop">
                         <div className="card">
@@ -41,6 +50,9 @@ class PeopleDetails extends Component {
                         <DetailsCard details={this.props.details} />
                     </div>
                 </div>
+
+                <Biography bio={this.props.details.biography} />
+                <Credits credits={this.props.credits} />
             </div>
         );
     }
@@ -48,13 +60,15 @@ class PeopleDetails extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        details: state.people.people_details
+        details: state.people.people_details,
+        credits: state.people.credits
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getDetails: (id) => { dispatch(peopleActions.fetchPeopleDetails(id)) }
+        getDetails: (id) => { dispatch(peopleActions.fetchPeopleDetails(id)) },
+        getCredits: (id) => { dispatch(peopleActions.fetchPeopleCredits(id)) }
     }
 }
  
