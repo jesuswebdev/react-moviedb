@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Credits = ({credits}) => {
 
+    if (!credits) {
+        return null;
+    }
+
     const creditsArray = credits.map(credit => {
 
         if (!credit.character) {
