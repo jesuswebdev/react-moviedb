@@ -1,4 +1,5 @@
 import React from 'react';
+import { getFullDate } from '../../../utils';
 
 const DetailsCard = ({movie}) => {
 
@@ -25,7 +26,7 @@ const DetailsCard = ({movie}) => {
                 <br></br>
                 <p>Runtime: {movie.runtime} minutes</p>
                 <p>Rating: {movie.vote_count > 0 ? `${movie.vote_average}/10 (${movie.vote_count} votes)` : 'No votes yet'} </p>
-                <p>Release Date: {movie.release_date}</p>
+                <p>Release Date: {getFullDate(movie.release_date)}</p>
             </div>
             <div className="card-footer">
             {homepageButton}

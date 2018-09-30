@@ -1,4 +1,5 @@
 import React from 'react';
+import { getFullDate } from '../../../utils';
 
 const DetailsCard = ({serie}) => {
 
@@ -25,7 +26,9 @@ const DetailsCard = ({serie}) => {
 
             <div className="content">
                 Score: {serie.vote_count > 0 ? `${serie.vote_average}/10 (${serie.vote_count} votes)`: 'No votes yet'} 
+                {serie.first_air_date ? <p>First air date: {getFullDate(serie.first_air_date)}</p>: null}
             </div>
+
         </div>
         {homepageButton}
     </div>)

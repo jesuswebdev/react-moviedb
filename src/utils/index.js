@@ -20,8 +20,20 @@ export const moneyPipe = (value) => {
     }
 
     if (value / 100000 > 1) {
-       return Math.floor(value/100000).toLocaleString('en').concat(' K');
+       return Math.floor(value/1000).toLocaleString('en').concat(' K');
     }
 
     return value.toLocaleString('en');
+}
+
+export const getFullDate = (releaseDate) => {
+
+    const months = [
+        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+
+    const date = new Date(releaseDate);
+    let fullDate = `${months[date.getMonth()]} ${date.getDate() + 1}, ${date.getFullYear()}`;
+
+    return fullDate;
 }

@@ -14,12 +14,14 @@ const Credits = ({credits}) => {
         }
         
         let url = `/${credit.media_type}/${credit.id}`;
+        const hasReleaseDate = credit.release_date || credit.first_air_date ? true : false;
+        const releaseDate = new Date(credit.release_date || credit.first_air_date);
+        const releaseYear = releaseDate.getFullYear();
 
         return (
             <tr key={'' + credit.media_type + credit.id + credit.character}>
                 <td>{credit.character}</td>
-                <td><Link to={url}>{credit.title || credit.name}</Link></td>
-                <td className="is-hidden-mobile">{credit.release_date || credit.first_air_date}</td>
+                <td><Link to={url}>{credit.title || credit.name} {hasReleaseDate ? `(${releaseYear})` : null} </Link></td>
             </tr>
         );
     }).filter(credit => credit !== null)
@@ -42,7 +44,6 @@ const Credits = ({credits}) => {
                                             Character
                                         </td>
                                         <td>Movie / TV Show</td>
-                                        <td className="is-hidden-mobile">Release Date</td>
                                     </tr>
                                 </thead>
                                 <tbody>

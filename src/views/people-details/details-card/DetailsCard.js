@@ -1,4 +1,5 @@
 import React from 'react';
+import { getFullDate } from '../../../utils';
 
 const DetailsCard = ({details}) => {
 
@@ -19,7 +20,7 @@ const DetailsCard = ({details}) => {
                     
                 </div>
                 <div className="content">
-                    {details.birthday ? <p>Birthday: {details.birthday}</p> : null}
+                    {details.birthday ? <p>Birthday: {getFullDate(details.birthday)}</p> : null}
                     {details.place_of_birth ? <p>Place of birth: {details.place_of_birth} </p> : null }
                 </div>
             </div>

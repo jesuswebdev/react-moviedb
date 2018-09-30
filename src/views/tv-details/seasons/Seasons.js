@@ -1,4 +1,5 @@
 import React from 'react';
+import { getFullDate } from '../../../utils';
 
 const Seasons = ({seasons}) => {
 
@@ -17,7 +18,7 @@ const Seasons = ({seasons}) => {
                     <div className="content">
                         <p>
                             <strong>{season.name}</strong><br />
-                            {season.air_date ? <small>Air date: {season.air_date}</small>: null}
+                            {season.air_date ? <small>Air date: {getFullDate(season.air_date)}</small>: null}
                             <br />
                             <small>Episodes: {season.episode_count}</small>
                             <br /> 
