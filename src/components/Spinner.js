@@ -1,10 +1,14 @@
 import React from 'react';
+import Aux from './Aux';
 
 const Spinner = () => {
     return (
-        <p className="has-text-centered">
-            <img src="/img/loading.gif" alt="loading" />
-        </p>
+        <Aux>
+            <p className="has-text-centered">
+                <img src="/img/loading.gif" alt="loading" />
+            </p>
+            <p className="has-text-centered">Loading...</p>
+        </Aux>
     );
 }
 
