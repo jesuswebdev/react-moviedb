@@ -54,8 +54,8 @@ class Tv extends Component {
                     </ul>
                 </div>
 
-                {this.props.selectedTab === 'trending' && <TrendingTv series={this.props.trending} />}
-                {this.props.selectedTab === 'top' && <TopTv series={this.props.top} />}
+                {this.props.selectedTab === 'trending' && <TrendingTv series={this.props.trending} hasError={this.props.trending_error} reloadTrending={this.props.getTrendingTv} />}
+                {this.props.selectedTab === 'top' && <TopTv series={this.props.top} hasError={this.props.top_error} reloadTop={this.props.getTopTv} />}
             </div>
         );
     }
@@ -65,7 +65,9 @@ const mapStateToProps = (state) => {
     return {
         trending: state.tv.trending,
         top: state.tv.top,
-        selectedTab: state.tv.selected_tab
+        selectedTab: state.tv.selected_tab,
+        trending_error: state.tv.trending_error,
+        top_error: state.tv.top_error
     }
 }
 

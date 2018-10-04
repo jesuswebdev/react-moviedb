@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const onClickBurgerMenu = () => {
     let menu = document.querySelector('.navbar-menu');
@@ -24,22 +24,12 @@ const onCloseBurgerMenu = () => {
 
 const Header = () => {
 
-    // const styles = {
-    //     marginBottom: '10px'
-    // };
-
-    const verticalAlignStyle = {
-        display: 'flex',
-        marginBottom: 'auto',
-        marginTop: 'auto'
-    }
-
     return (
         <nav className="navbar is-dark" aria-label="main navigation">
             <div className="navbar-brand">
-                <h4 style={verticalAlignStyle}>
+                <Link className="navbar-item" to='/'>
                     MovieFinder
-                </h4>
+                </Link>
 
                 <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" onClick={onClickBurgerMenu}>
                     <span aria-hidden="true"></span>
@@ -49,7 +39,6 @@ const Header = () => {
             </div>
             <div className="navbar-menu">
                 <div className="navbar-start">
-                    <NavLink to='/' exact className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >Home</NavLink>
                     <NavLink to='/movies' className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >Movies</NavLink>
                     <NavLink to='/tv' className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >TV Series</NavLink>
                     <NavLink to='/people' className='navbar-item' activeClassName='is-active' onClick={onCloseBurgerMenu} >People</NavLink>

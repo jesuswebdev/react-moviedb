@@ -8,6 +8,12 @@ const DetailsCard = ({details}) => {
     const homepageButton = details.homepage ? 
         <a className="card-footer-item" href={details.homepage}>Visit Homepage</a> :
         null;
+
+    let deathDay = null;
+
+    if (details.deathday) {
+        deathDay = <p>Death day: {getFullDate(details.deathday)}</p>;
+    }
     
     const imdbUrl = 'https://www.imdb.com/name/';
 
@@ -22,6 +28,7 @@ const DetailsCard = ({details}) => {
                 <div className="content">
                     {details.birthday ? <p>Birthday: {getFullDate(details.birthday)}</p> : null}
                     {details.place_of_birth ? <p>Place of birth: {details.place_of_birth} </p> : null }
+                    {deathDay}
                 </div>
             </div>
             <div className="card-footer">
