@@ -10,7 +10,6 @@ export function* fetchTrendingTvSaga(action) {
         const {data: {results}} = yield call(axios.get, url);
         yield put(tvActions.fetchTrendingTvSuccess(results));
     } catch(e) {
-        console.log(e);
         yield put(tvActions.fetchTrendingTvFail());
     }
 

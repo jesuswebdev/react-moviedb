@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Credits = ({credits}) => {
 
-    if (!credits) {
+    if (credits.length === 0) {
         return null;
     }
 

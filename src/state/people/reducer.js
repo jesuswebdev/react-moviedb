@@ -56,6 +56,13 @@ const fetchPeopleCreditsFail = (state, action) => {
     }
 }
 
+const clearPeopleCredits = (state, action) => {
+    return {
+        ...state,
+        credits: []
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_POPULAR_PEOPLE_SUCCESS: return fetchPeopleSuccess(state, action)
@@ -64,6 +71,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_PEOPLE_DETAILS_FAIL: return fetchPeopleDetailsFail(state, action)
         case actionTypes.FETCH_PEOPLE_CREDITS_SUCCESS: return fetchPeopleCreditsSuccess(state, action)
         case actionTypes.FETCH_PEOPLE_CREDITS_FAIL: return fetchPeopleCreditsFail(state, action)        
+        case actionTypes.CLEAR_PEOPLE_CREDITS: return clearPeopleCredits(state, action)
         default: return state;
     }
 }

@@ -69,6 +69,12 @@ export const fetcMovieCastFail = () => {
     }
 }
 
+export const clearMovieCast = () => {
+    return {
+        type: actionTypes.CLEAR_MOVIE_CAST
+    }
+}
+
 export const showFullCast = () => {
     return {
         type: actionTypes.SHOW_FULL_CAST
@@ -93,6 +99,27 @@ export const fetchTopMoviesSuccess = (movies) => {
 export const fetchTopMoviesFail = () => {
     return {
         type: actionTypes.FETCH_TOP_MOVIES_FAIL
+    }
+}
+
+export const fetchPlayingMovies = () => {
+    return {
+        type: actionTypes.REQUEST_FETCH_PLAYING_MOVIES
+    }
+}
+
+export const fetchPlayingMoviesSuccess = (movies) => {
+    return {
+        type: actionTypes.FETCH_PLAYING_MOVIES_SUCCESS,
+        payload: {
+            movies
+        }
+    }
+}
+
+export const fetchPlayingMoviesFail = () => {
+    return {
+        type: actionTypes.FETCH_PLAYING_MOVIES_FAIL
     }
 }
 

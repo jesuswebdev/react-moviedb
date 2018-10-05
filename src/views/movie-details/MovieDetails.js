@@ -12,6 +12,7 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 class MovieDetails extends Component {
 
     componentDidMount() {
+        this.props.clearMovieCast();
         this.props.getMovieDetails(this.props.match.params.id);
         this.props.getMovieCast(this.props.match.params.id);
     }
@@ -95,7 +96,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getMovieDetails: (movie_id) => { dispatch(moviesActions.fetchMovieDetails(movie_id)) },
         getMovieCast: (movie_id) => { dispatch(moviesActions.fetchMovieCast(movie_id)) },
-        onClickShowFullCast: () => { dispatch(moviesActions.showFullCast()) }
+        onClickShowFullCast: () => { dispatch(moviesActions.showFullCast()) },
+        clearMovieCast: () => { dispatch(moviesActions.clearMovieCast()) }
     }
 }
  

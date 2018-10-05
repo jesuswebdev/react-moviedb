@@ -83,6 +83,13 @@ const onClickShowFullCast = (state, action) => {
     }
 }
 
+const clearTvCast = (state, action) => {
+    return {
+        ...state,
+        cast: []
+    }
+}
+
 const selectTab = (state, action) => {
     if (state.selected_tab === action.payload) {
         return state;
@@ -105,6 +112,7 @@ const reducer = (state = tvInitialState, action) => {
         case tvActions.FETCH_TV_CAST_SUCCESS: return fetchTvCastSuccess(state, action)
         case tvActions.FETCH_TV_CAST_FAIL: return fetchTvCastFail(state, action)
         case tvActions.ON_CLICK_SHOW_FULL_CAST: return onClickShowFullCast(state, action)
+        case tvActions.CLEAR_TV_CAST: return clearTvCast(state, action)
         case tvActions.SELECT_TAB: return selectTab(state, action)
         default: return state
     }

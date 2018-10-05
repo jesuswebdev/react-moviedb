@@ -68,3 +68,9 @@ export const fetchPeopleCreditsFail = () => {
         type: peopleActions.FETCH_PEOPLE_CREDITS_FAIL
     }
 }
+
+export const clearPeopleCredits = () => {
+    return {
+        type: peopleActions.CLEAR_PEOPLE_CREDITS
+    }
+}

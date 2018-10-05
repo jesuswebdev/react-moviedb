@@ -5,7 +5,7 @@ import * as searchActionTypes from './search/actionTypes';
 import * as tvActionTypes from './tv/actionTypes';
 import * as peopleActionTypes from './people/actionTypes';
 
-import { fetchTrendingMoviesSaga, fetchMovieDetailsSaga, fetchMovieCastSaga, fetchTopMoviesSaga } from './movies/sagas';
+import { fetchTrendingMoviesSaga, fetchMovieDetailsSaga, fetchMovieCastSaga, fetchTopMoviesSaga, fetchPlayingMoviesSaga } from './movies/sagas';
 import { searchSaga } from './search/sagas';
 import { fetchTrendingTvSaga, fetchTvDetailsSaga, fetchTvCastSaga, fetchTopTvSaga } from './tv/saga';
 import { fetchPopularPeopleSaga, fetchPeopleDetailsSaga, fetchPeopleCreditsSaga } from './people/saga';
@@ -16,7 +16,8 @@ function* watchMovies() {
         takeLatest(movieActionTypes.REQUEST_FETCH_TRENDING_MOVIES, fetchTrendingMoviesSaga)  ,
         takeLatest(movieActionTypes.REQUEST_FETCH_MOVIE_DETAILS, fetchMovieDetailsSaga),
         takeLatest(movieActionTypes.REQUEST_FETCH_MOVIE_CAST, fetchMovieCastSaga),
-        takeLatest(movieActionTypes.REQUEST_FETCH_TOP_MOVIES, fetchTopMoviesSaga)
+        takeLatest(movieActionTypes.REQUEST_FETCH_TOP_MOVIES, fetchTopMoviesSaga),
+        takeLatest(movieActionTypes.REQUEST_FETCH_PLAYING_MOVIES, fetchPlayingMoviesSaga)
     ]);
 }
 

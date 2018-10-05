@@ -14,5 +14,6 @@ export const REQUEST_FETCH_TV_CAST = 'tv/ REQUEST FETCH TV CAST';
 export const FETCH_TV_CAST_SUCCESS = 'tv/ FETCH TV CAST SUCCESS';
 export const FETCH_TV_CAST_FAIL = 'tv/ FETCH TV CAST FAIL';
 export const ON_CLICK_SHOW_FULL_CAST = 'tv/ ON CLICK SHOW FULL CAST';
+export const CLEAR_TV_CAST = 'tv/ CLEAR TV CAST';
 
 export const SELECT_TAB = 'tv/ SELECT TAB';

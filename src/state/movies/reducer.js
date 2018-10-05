@@ -5,6 +5,8 @@ const moviesInitialState = {
     trending_error: false,
     top: [],
     top_error: false,
+    playing: [],
+    playing_error: false,
     movie_details: null,
     current_movie_details_id: null,
     movie_details_error: false,
@@ -61,6 +63,13 @@ const fetchMovieCastFail = (state, action) => {
     }
 }
 
+const clearMovieCast = (state, action) => {
+    return {
+        ...state,
+        movie_cast: []
+    }
+}
+
 const showFullCast = (state, action) => {
     return {
         ...state,
@@ -80,6 +89,21 @@ const fetchTopMoviesFail = (state, action) => {
     return {
         ...state,
         top_error: true
+    }
+}
+
+const fetchPlayingMoviesSuccess = (state, action) => {
+    return {
+        ...state,
+        playing: [...action.payload.movies],
+        playing_error: false
+    }
+}
+
+const fetchPlayingMoviesFail = (state, action) => {
+    return {
+        ...state,
+        playing_error: true
     }
 }
 
@@ -104,8 +128,11 @@ const reducer = (state = moviesInitialState, action) => {
         case moviesActions.FETCH_MOVIE_CAST_SUCCESS: return fetchMovieCastSuccess(state, action)
         case moviesActions.FETCH_MOVIE_CAST_FAIL: return fetchMovieCastFail(state, action)
         case moviesActions.SHOW_FULL_CAST: return showFullCast(state, action)
+        case moviesActions.CLEAR_MOVIE_CAST: return clearMovieCast(state, action)
         case moviesActions.FETCH_TOP_MOVIES_SUCCESS: return fetchTopMoviesSuccess(state, action)
         case moviesActions.FETCH_TOP_MOVIES_FAIL: return fetchTopMoviesFail(state, action)
+        case moviesActions.FETCH_PLAYING_MOVIES_SUCCESS: return fetchPlayingMoviesSuccess(state, action)
+        case moviesActions.FETCH_PLAYING_MOVIES_FAIL: return fetchPlayingMoviesFail(state, action)
         case moviesActions.SELECT_TAB: return selectTab(state, action)
         default: return state;
     }

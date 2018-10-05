@@ -43,3 +43,13 @@ export function* fetchTopMoviesSaga(action) {
         yield put(movieActions.fetchTopMoviesFail())
     }
 }
+
+export function* fetchPlayingMoviesSaga(action) {
+    try {
+        const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`;
+        const {data: {results}} = yield call(axios.get, url);
+        yield put(movieActions.fetchPlayingMoviesSuccess(results));
+    } catch(e) {
+        yield put(movieActions.fetchPlayingMoviesFail())
+    }
+}

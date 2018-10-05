@@ -33,7 +33,7 @@ export const getFullDate = (releaseDate) => {
     ];
 
     const date = new Date(releaseDate);
-    let fullDate = `${months[date.getMonth()]} ${date.getDate() + 1}, ${date.getFullYear()}`;
+    let fullDate = `${months[date.getUTCMonth()]} ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
 
     return fullDate;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Aux from '../../../components/Aux';
 
 const Cast = (props) => {
     
@@ -25,10 +26,14 @@ const Cast = (props) => {
                         {castItem.name}
                     </Link>
                 </td>
-                <td style={vAlign}>...</td>
-                <td style={vAlign}>
-                    {castItem.character}
-                </td>
+                {castItem.character.length > 0 ? 
+                    <Aux>
+                        <td style={vAlign}>...</td>
+                        <td style={vAlign}>
+                            {castItem.character}
+                        </td>
+                    </Aux> :
+                    null}
             </tr>)
         })
     }

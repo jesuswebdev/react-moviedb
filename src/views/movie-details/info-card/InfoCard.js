@@ -9,6 +9,15 @@ const InfoCard = ({movie}) => {
 
     let production_companies = movie.production_companies.map(company => company.name).join(', ');
 
+    let budget = null;
+
+    if (movie.budget > 0 || movie.revenue > 0) {
+        budget = <div className="content">
+                    {movie.budget > 0 ? <p>Budget: ${moneyPipe(movie.budget)}</p> : null}
+                    {movie.revenue > 0 ? <p>Gross: ${moneyPipe(movie.revenue)}</p> : null}
+                </div>;
+    }
+
     return (
         <div className="card">
             <div className="card-header">
@@ -18,10 +27,7 @@ const InfoCard = ({movie}) => {
             </div>
 
             <div className="card-content">
-                <div className="content">
-                    {movie.budget > 0 ? <p>Budget: ${moneyPipe(movie.budget)}</p> : null}
-                    {movie.revenue > 0 ? <p>Gross: ${moneyPipe(movie.revenue)}</p> : null}
-                </div>
+                {budget}
                 {movie.production_companies.length > 0 ? 
                     <div className="content">
                         <p>Production Compan{movie.production_companies.length > 1 ? 'ies' : 'y'}: {production_companies}</p>

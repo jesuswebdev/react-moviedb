@@ -97,6 +97,12 @@ export const onClickShowFullCast = () => {
     }
 }
 
+export const clearTvCast = () => {
+    return {
+        type: tvActionTypes.CLEAR_TV_CAST
+    }
+}
+
 export const selectTab = (tab) => {
     return {
         type: tvActionTypes.SELECT_TAB,

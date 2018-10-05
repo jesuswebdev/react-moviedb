@@ -13,6 +13,7 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 class TvDetails extends Component {
 
     componentDidMount() {
+        this.props.clearCast();
         this.props.fetchTvSerieDetails(this.props.match.params.id);
         this.props.fetchTvCast(this.props.match.params.id);
     }
@@ -90,7 +91,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchTvSerieDetails: (id) => { dispatch(tvActions.fetchTvDetails(id)) },
         fetchTvCast: (id) => { dispatch(tvActions.fetchTvCast(id)) },
-        onClickShowFullCast: () => { dispatch(tvActions.onClickShowFullCast()) }
+        onClickShowFullCast: () => { dispatch(tvActions.onClickShowFullCast()) },
+        clearCast: () => { dispatch(tvActions.clearTvCast()) }
     }
 }
  

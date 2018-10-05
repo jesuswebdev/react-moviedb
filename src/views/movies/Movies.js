@@ -7,12 +7,14 @@ import TrendingMovies from './trending-movies/TrendingMovies';
 import TopMovies from './top-movies/TopMovies';
 import Spinner from '../../components/Spinner';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import NowPlaying from './now-playing/NowPlaying';
 
 class Movies extends Component {
 
     componentDidMount() {
         this.props.getTopMovies();
         this.props.getTrendingMovies();
+        this.props.getPlayingMovies();
     }
 
     styles = {
@@ -45,9 +47,15 @@ class Movies extends Component {
                             <span>Trending Movies</span>
                         </a>
                         </li>
+                        <li className={this.props.selectedTab === 'playing' ? 'is-active' : null} onClick={() => this.props.selectTab('playing')}>
+                        <a>
+                            <span className="icon is-small"> <FontAwesomeIcon icon="ticket-alt" className="has-text-black" /> </span>
+                            <span>In Theatres</span>
+                        </a>
+                        </li>
                         <li className={this.props.selectedTab === 'top' ? 'is-active' : null} onClick={() => this.props.selectTab('top')}>
                         <a>
-                            <span className="icon is-small is-warning"> <FontAwesomeIcon icon="star" className="has-text-warning" /> </span>
+                            <span className="icon is-small"> <FontAwesomeIcon icon="star" className="has-text-warning" /> </span>
                             <span>Top Rated Movies</span>
                         </a>
                         </li>
@@ -55,6 +63,7 @@ class Movies extends Component {
                 </div>
 
                 {this.props.selectedTab === 'trending' && <TrendingMovies movies={this.props.trending}/>}
+                {this.props.selectedTab === 'playing' && <NowPlaying movies={this.props.nowPlaying} />}
                 {this.props.selectedTab === 'top' && <TopMovies movies={this.props.top} />}
             </div>
         );
@@ -65,6 +74,7 @@ const mapStateToProps = (state) => {
     return {
         trending: state.movies.trending,
         top: state.movies.top,
+        nowPlaying: state.movies.playing,
         selectedTab: state.movies.selectedTab
     }
 }
@@ -73,6 +83,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getTrendingMovies: () => { dispatch(movieActions.fetchTrendingMovies()) },
         getTopMovies: () => { dispatch(movieActions.fetchTopMovies()) },
+        getPlayingMovies: () => { dispatch(movieActions.fetchPlayingMovies()) },
         selectTab: (tab) => { dispatch(movieActions.selectTab(tab)) }
     }
 }

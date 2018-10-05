@@ -11,6 +11,7 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 class PeopleDetails extends Component {
 
     componentDidMount() {
+        this.props.clearCredits();
         this.props.getDetails(this.props.match.params.id);
         this.props.getCredits(this.props.match.params.id);
     }
@@ -73,7 +74,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getDetails: (id) => { dispatch(peopleActions.fetchPeopleDetails(id)) },
-        getCredits: (id) => { dispatch(peopleActions.fetchPeopleCredits(id)) }
+        getCredits: (id) => { dispatch(peopleActions.fetchPeopleCredits(id)) },
+        clearCredits: () => { dispatch(peopleActions.clearPeopleCredits()) }
     }
 }
  
