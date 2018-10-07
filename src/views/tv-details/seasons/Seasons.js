@@ -1,5 +1,6 @@
 import React from 'react';
 import { getFullDate } from '../../../utils';
+import Aux from '../../../components/Aux';
 
 const Seasons = ({seasons}) => {
 
@@ -7,6 +8,14 @@ const Seasons = ({seasons}) => {
     const dummyImg = 'https://placeimg.com/92/133/animals';
 
     let seasonsArray = seasons.map(season => {
+
+        let episodeCount = season.episode_count > 0 ?
+        <Aux>
+            <small>Episodes: {season.episode_count}</small>
+            <br /> 
+        </Aux> :
+        null;
+
         return (
             <article className="media" key={season.id}>
                 <figure className="media-left">
@@ -20,8 +29,7 @@ const Seasons = ({seasons}) => {
                             <strong>{season.name}</strong><br />
                             {season.air_date ? <small>Air date: {getFullDate(season.air_date)}</small>: null}
                             <br />
-                            <small>Episodes: {season.episode_count}</small>
-                            <br /> 
+                            {episodeCount}
                         </p>
                         <p className="has-text-justified">
                             {season.overview} 

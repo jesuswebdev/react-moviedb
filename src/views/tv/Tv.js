@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as tvActions from '../../state/tv/actions';
-import TrendingTv from './trending-tv/TrendingTv';
-import TopTv from './top-tv/TopTv';
 import Spinner from '../../components/Spinner';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import TvItems from './tv-items/TvItems';
 
 class Tv extends Component {
 
@@ -54,8 +53,8 @@ class Tv extends Component {
                     </ul>
                 </div>
 
-                {this.props.selectedTab === 'trending' && <TrendingTv series={this.props.trending} hasError={this.props.trending_error} reloadTrending={this.props.getTrendingTv} />}
-                {this.props.selectedTab === 'top' && <TopTv series={this.props.top} hasError={this.props.top_error} reloadTop={this.props.getTopTv} />}
+                {this.props.selectedTab === 'trending' && <TvItems series={this.props.trending} hasError={this.props.trending_error} reloadTv={this.props.getTrendingTv} />}
+                {this.props.selectedTab === 'top' && <TvItems series={this.props.top} hasError={this.props.top_error} reloadTv={this.props.getTopTv} />}
             </div>
         );
     }

@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as movieActions from '../../state/movies/actions';
-import TrendingMovies from './trending-movies/TrendingMovies';
-import TopMovies from './top-movies/TopMovies';
 import Spinner from '../../components/Spinner';
 import Breadcrumbs from '../../components/Breadcrumbs';
-import NowPlaying from './now-playing/NowPlaying';
+import MovieItems from './movie-items/MovieItems';
 
 class Movies extends Component {
 
@@ -62,9 +60,9 @@ class Movies extends Component {
                     </ul>
                 </div>
 
-                {this.props.selectedTab === 'trending' && <TrendingMovies movies={this.props.trending}/>}
-                {this.props.selectedTab === 'playing' && <NowPlaying movies={this.props.nowPlaying} />}
-                {this.props.selectedTab === 'top' && <TopMovies movies={this.props.top} />}
+                {this.props.selectedTab === 'trending' && <MovieItems movies={this.props.trending}/>}
+                {this.props.selectedTab === 'playing' && <MovieItems movies={this.props.nowPlaying} />}
+                {this.props.selectedTab === 'top' && <MovieItems movies={this.props.top} />}
             </div>
         );
     }

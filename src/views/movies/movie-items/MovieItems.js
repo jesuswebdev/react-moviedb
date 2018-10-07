@@ -1,7 +1,7 @@
 import React from 'react';
 import MovieCardItem from '../movie-card-item/MovieCardItem';
 
-const NowPlaying = ({movies}) => {
+const MovieItems = ({movies}) => {
 
     let peliculas = null;
 
@@ -16,4 +16,4 @@ const NowPlaying = ({movies}) => {
     );
 }
 
-export default NowPlaying;
+export default MovieItems;
