@@ -58,7 +58,7 @@ const Breadcrumbs = ({links}) => {
     })
 
     return (
-        <nav className="breadcrumb is-centered" aria-label="breadcrumbs" style={{marginTop: '10px'}}>
+        <nav className="breadcrumb is-centered" aria-label="breadcrumbs" style={{marginTop: '75px'}}>
             <ul>
                 <li>
                     <Link to='/'>
