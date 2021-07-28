@@ -14,7 +14,7 @@ const App = () => (
   <BrowserRouter>
     <Layout>
       <Switch>
-        {/* <Route path="/movies/:type" component={MovieDetails} /> */}
+        <Route path="/movie/:id" component={MovieDetails} />
         <Route path="/movies/:type" exact component={Movies} />
         {/* <Route path="/tv/:id" component={TvDetails} />
         <Route path="/tv" exact component={Tv} />

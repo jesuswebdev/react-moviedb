@@ -34,7 +34,7 @@ const DetailsCard = ({ movie }) => {
           Rating:{" "}
           {movie.vote_count > 0
             ? `${movie.vote_average}/10 (${movie.vote_count} votes)`
-            : "No votes yet"}{" "}
+            : "No votes yet"}
         </p>
         <p>Release Date: {getFullDate(movie.release_date)}</p>
       </div>

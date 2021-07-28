@@ -1,114 +1,106 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-
-import * as moviesActions from "../../state/movies/actions";
-import { IMG_URL } from "../../config";
+import React, { useEffect, useState } from "react";
+import { useRouteMatch } from "react-router";
+import { img_url } from "../../config/index";
 import InfoCard from "./info-card/InfoCard";
 import DetailsCard from "./details-card/DetailsCard";
 import CastCard from "./cast-card/CastCard";
 import Spinner from "../../components/Spinner";
 import Breadcrumbs from "../../components/Breadcrumbs";
 
-class MovieDetails extends Component {
-  componentDidMount() {
-    this.props.clearMovieCast();
-    this.props.getMovieDetails(this.props.match.params.id);
-    this.props.getMovieCast(this.props.match.params.id);
-  }
+import { useHttp } from "@moviedb/hooks";
 
-  styles = {
+const MovieDetails = () => {
+  const {
+    isLoading: isLoadingMovieDetails,
+    data: movieDetails,
+    get: getMovieDetails
+  } = useHttp();
+
+  const {
+    isLoading: isLoadingMovieCast,
+    data: { cast: movieCast } = {},
+    get: getMovieCast
+  } = useHttp();
+
+  const [showFullCast, setShowFullCast] = useState(false);
+
+  const toggleShowFullCast = () => {
+    setShowFullCast(value => !value);
+  };
+
+  const { params } = useRouteMatch();
+
+  useEffect(() => {
+    getMovieDetails(`/movie/${params.id}?language=en-US`);
+    getMovieCast(`/movie/${params.id}/credits`);
+  }, [params.id]);
+
+  const styles = {
     minHeight: "85vh",
     marginBottom: "30px"
   };
 
-  render() {
-    if (this.props.details === null) {
-      return <Spinner />;
-    }
+  if (
+    isLoadingMovieCast ||
+    isLoadingMovieDetails ||
+    !movieDetails ||
+    !movieCast
+  ) {
+    return <Spinner />;
+  }
 
-    if (this.props.movieId !== parseInt(this.props.match.params.id, 10)) {
-      return <Spinner />;
-    }
+  let movie = movieDetails;
+  const dummyImg = "https://placeimg.com/500/750/animals";
+  let img = movie.poster_path ? `${img_url}${movie.poster_path}` : dummyImg;
 
-    let movie = this.props.details;
-    const dummyImg = "https://placeimg.com/500/750/animals";
-    let img = movie.poster_path ? `${IMG_URL}${movie.poster_path}` : dummyImg;
+  let cast;
 
-    let cast;
+  if (movieCast.length > 10 && !showFullCast) {
+    cast = (
+      <CastCard
+        cast={movieCast.slice(0, 10)}
+        onClickShowFullCast={toggleShowFullCast}
+      />
+    );
+  } else {
+    cast = <CastCard cast={movieCast} showFullCast />;
+  }
 
-    if (this.props.cast.length > 10 && !this.props.showFullCast) {
-      cast = (
-        <CastCard
-          cast={this.props.cast.slice(0, 10)}
-          onClickShowFullCast={this.props.onClickShowFullCast}
-        />
-      );
-    } else {
-      cast = <CastCard cast={this.props.cast} showFullCast />;
-    }
+  const breadcrumbLinks = [
+    { to: "/movies", name: "movie" },
+    { to: "/movie/" + movie.id, name: movie.title }
+  ];
 
-    const breadcrumbLinks = [
-      { to: "/movies", name: "movie" },
-      { to: "/movie/" + movie.id, name: movie.title }
-    ];
-
-    return (
-      <div className="container" style={this.styles}>
-        <Breadcrumbs links={breadcrumbLinks} />
-        <div className="columns is-mobile is-centered is-multiline">
-          <div className="column is-10-mobile is-5-tablet is-5-desktop">
-            <div className="card">
-              <div className="card-image">
-                <figure className="image">
-                  <img src={img} alt={movie.title} />
-                </figure>
-              </div>
+  return (
+    <div className="container" style={styles}>
+      <Breadcrumbs links={breadcrumbLinks} />
+      <div className="columns is-mobile is-centered is-multiline">
+        <div className="column is-10-mobile is-5-tablet is-5-desktop">
+          <div className="card">
+            <div className="card-image">
+              <figure className="image">
+                <img src={img} alt={movie.title} />
+              </figure>
             </div>
           </div>
-          <div className="column is-10-mobile is-5-tablet is-5-desktop">
-            <DetailsCard movie={movie} />
-          </div>
         </div>
-
-        <div className="columns is-mobile is-centered">
-          <div className="column is-10-mobile is-10-tablet is-10-desktop">
-            {this.props.cast.length > 0 && cast}
-          </div>
-        </div>
-        <div className="columns is-mobile is-centered">
-          <div className="column is-10-mobile is-10-tablet is-10-desktop">
-            <InfoCard movie={movie} />
-          </div>
+        <div className="column is-10-mobile is-5-tablet is-5-desktop">
+          <DetailsCard movie={movie} />
         </div>
       </div>
-    );
-  }
-}
 
-const mapStateToProps = state => {
-  return {
-    details: state.movies.movie_details,
-    movieId: state.movies.current_movie_details_id,
-    cast: state.movies.movie_cast,
-    showFullCast: state.movies.show_full_cast
-  };
+      <div className="columns is-mobile is-centered">
+        <div className="column is-10-mobile is-10-tablet is-10-desktop">
+          {movieCast.length && cast}
+        </div>
+      </div>
+      <div className="columns is-mobile is-centered">
+        <div className="column is-10-mobile is-10-tablet is-10-desktop">
+          <InfoCard movie={movie} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getMovieDetails: movie_id => {
-      dispatch(moviesActions.fetchMovieDetails(movie_id));
-    },
-    getMovieCast: movie_id => {
-      dispatch(moviesActions.fetchMovieCast(movie_id));
-    },
-    onClickShowFullCast: () => {
-      dispatch(moviesActions.showFullCast());
-    },
-    clearMovieCast: () => {
-      dispatch(moviesActions.clearMovieCast());
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);
+export default MovieDetails;

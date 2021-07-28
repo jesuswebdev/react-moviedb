@@ -4,7 +4,7 @@ import { moviedb } from "@moviedb/utils";
 const useHttp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(undefined);
 
   const get = useCallback(async (...args) => {
     try {
