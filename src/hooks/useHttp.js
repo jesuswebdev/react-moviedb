@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { moviedb } from "@moviedb/utils";
 
-const useHttp = () => {
+const useHttp = (transformResponse = v => v) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [data, setData] = useState(undefined);
@@ -11,7 +11,7 @@ const useHttp = () => {
       setHasError(false);
       setIsLoading(true);
       const { data } = await moviedb.get(...args);
-      setData(data);
+      setData(transformResponse(data));
     } catch (error) {
       console.error(error);
       setHasError(true);

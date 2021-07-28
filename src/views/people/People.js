@@ -1,61 +1,45 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-
-import * as peopleActions from "../../state/people/actions";
+import React, { useEffect, useCallback } from "react";
 import PeopleCard from "./people-card/PeopleCard";
 import Spinner from "../../components/Spinner";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import { useHttp } from "@moviedb/hooks";
 
-class People extends Component {
-  componentDidMount() {
-    this.props.getPeople();
-  }
+const People = () => {
+  const {
+    isLoading,
+    data: people,
+    get: getPeople
+  } = useHttp(useCallback(v => v.results, []));
 
-  styles = {
+  useEffect(() => {
+    getPeople(`/person/popular?language=en-US&page=1`);
+  }, []);
+
+  const styles = {
     minHeight: "85vh",
     marginBottom: "30px"
   };
 
-  render() {
-    if (!this.props.people || this.props.people.length < 1) {
-      return <Spinner />;
-    }
-
-    let people = this.props.people.map(person => {
-      return (
-        <div
-          className="column is-10-mobile is-5-tablet is-4-desktop"
-          key={person.id}>
-          <PeopleCard people={person} />
-        </div>
-      );
-    });
-
-    const breadcrumbLinks = [{ to: "/people", name: "people" }];
-
-    return (
-      <div className="container" style={this.styles}>
-        <Breadcrumbs links={breadcrumbLinks} />
-        <div className="columns is-mobile is-centered is-multiline">
-          {people}
-        </div>
-      </div>
-    );
+  if (isLoading || !people) {
+    return <Spinner />;
   }
-}
 
-const mapStateToProps = state => {
-  return {
-    people: state.people.people
-  };
+  const breadcrumbLinks = [{ to: "/people", name: "people" }];
+
+  return (
+    <div className="container" style={styles}>
+      <Breadcrumbs links={breadcrumbLinks} />
+      <div className="columns is-mobile is-centered is-multiline">
+        {people.map(person => (
+          <div
+            className="column is-10-mobile is-5-tablet is-4-desktop"
+            key={`person-${person.id}`}>
+            <PeopleCard people={person} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getPeople: () => {
-      dispatch(peopleActions.fetchPeople());
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(People);
+export default People;
