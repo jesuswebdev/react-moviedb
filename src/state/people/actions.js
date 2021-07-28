@@ -1,76 +1,76 @@
-import * as peopleActions from './actionTypes';
+import * as peopleActions from "./actionTypes";
 
 export const fetchPeople = () => {
-    return {
-        type: peopleActions.REQUEST_FETCH_POPULAR_PEOPLE
-    }
-}
+  return {
+    type: peopleActions.REQUEST_FETCH_POPULAR_PEOPLE
+  };
+};
 
-export const fetchPeopleSuccess = (people) => {
-    return {
-        type: peopleActions.FETCH_POPULAR_PEOPLE_SUCCESS,
-        payload: {
-            people
-        }
+export const fetchPeopleSuccess = people => {
+  return {
+    type: peopleActions.FETCH_POPULAR_PEOPLE_SUCCESS,
+    payload: {
+      people
     }
-}
+  };
+};
 
 export const fetchPeopleFail = () => {
-    return {
-        type: peopleActions.FETCH_POPULAR_PEOPLE_FAIL
-    }
-}
+  return {
+    type: peopleActions.FETCH_POPULAR_PEOPLE_FAIL
+  };
+};
 
-export const fetchPeopleDetails = (id) => {
-    return {
-        type: peopleActions.REQUEST_FETCH_PEOPLE_DETAILS,
-        payload: {
-            id
-        }
+export const fetchPeopleDetails = id => {
+  return {
+    type: peopleActions.REQUEST_FETCH_PEOPLE_DETAILS,
+    payload: {
+      id
     }
-}
+  };
+};
 
-export const fetchPeopleDetailsSuccess = (details) => {
-    return {
-        type: peopleActions.FETCH_PEOPLE_DETAILS_SUCCESS,
-        payload: {
-            details
-        }
+export const fetchPeopleDetailsSuccess = details => {
+  return {
+    type: peopleActions.FETCH_PEOPLE_DETAILS_SUCCESS,
+    payload: {
+      details
     }
-}
+  };
+};
 
 export const fetchPeopleDetailsFail = () => {
-    return {
-        type: peopleActions.FETCH_PEOPLE_DETAILS_FAIL
-    }
-}
+  return {
+    type: peopleActions.FETCH_PEOPLE_DETAILS_FAIL
+  };
+};
 
-export const fetchPeopleCredits = (id) => {
-    return {
-        type: peopleActions.REQUEST_FETCH_PEOPLE_CREDITS,
-        payload: {
-            id
-        }
+export const fetchPeopleCredits = id => {
+  return {
+    type: peopleActions.REQUEST_FETCH_PEOPLE_CREDITS,
+    payload: {
+      id
     }
-}
+  };
+};
 
-export const fetchPeopleCreditsSuccess = (credits) => {
-    return {
-        type: peopleActions.FETCH_PEOPLE_CREDITS_SUCCESS,
-        payload: {
-            credits
-        }
+export const fetchPeopleCreditsSuccess = credits => {
+  return {
+    type: peopleActions.FETCH_PEOPLE_CREDITS_SUCCESS,
+    payload: {
+      credits
     }
-}
+  };
+};
 
 export const fetchPeopleCreditsFail = () => {
-    return {
-        type: peopleActions.FETCH_PEOPLE_CREDITS_FAIL
-    }
-}
+  return {
+    type: peopleActions.FETCH_PEOPLE_CREDITS_FAIL
+  };
+};
 
 export const clearPeopleCredits = () => {
-    return {
-        type: peopleActions.CLEAR_PEOPLE_CREDITS
-    }
-}
+  return {
+    type: peopleActions.CLEAR_PEOPLE_CREDITS
+  };
+};

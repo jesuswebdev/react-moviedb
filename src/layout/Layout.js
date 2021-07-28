@@ -1,16 +1,13 @@
-import React from 'react';
-import Aux from '../components/Aux';
-import Footer from '../components/Footer';
-import Header from '../components/Navbar';
+import React from "react";
+import Footer from "../components/Footer";
+import Header from "../components/Navbar";
 
-const Layout = (props) => {
-    return (
-        <Aux>
-            <Header />
-            {props.children}
-            <Footer />
-        </Aux>
-    );
-}
+const Layout = ({ children }) => (
+  <>
+    <Header />
+    {children}
+    <Footer />
+  </>
+);
 
 export default Layout;

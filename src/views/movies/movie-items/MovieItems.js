@@ -1,19 +1,20 @@
-import React from 'react';
-import MovieCardItem from '../movie-card-item/MovieCardItem';
+import React from "react";
+import MovieCardItem from "../movie-card-item/MovieCardItem";
 
-const MovieItems = ({movies}) => {
+const MovieItems = ({ movies }) => {
+  let peliculas = null;
 
-    let peliculas = null;
+  if (movies.length > 0) {
+    peliculas = movies.map(movie => (
+      <MovieCardItem key={movie.id} movie={movie} />
+    ));
+  }
 
-    if (movies.length > 0) {
-        peliculas = movies.map((movie) => <MovieCardItem key={movie.id} movie={movie} />);
-    }
-
-    return (
-        <div className="columns is-mobile is-multiline is-centered">
-            {peliculas}
-        </div>
-    );
-}
+  return (
+    <div className="columns is-mobile is-multiline is-centered">
+      {peliculas}
+    </div>
+  );
+};
 
 export default MovieItems;
