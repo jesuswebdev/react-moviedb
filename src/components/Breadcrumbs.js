@@ -2,52 +2,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+const linkProps = {
+  movie: { text: "Movies", icon: "film" },
+  tv: { text: "TV Series", icon: "tv" },
+  people: { text: "People", icon: "user" },
+  search: { text: "Search", icon: "search" }
+};
+
+const getCrumbLink = link => {
+  return (
+    <Link to={link.to}>
+      <span className="icon is-small">
+        <FontAwesomeIcon icon={linkProps[link.name].icon} />
+      </span>
+      <span>{linkProps[link.name].text}</span>
+    </Link>
+  );
+};
+
 const Breadcrumbs = ({ links }) => {
   const crumbs = links.map((link, index) => {
     let crumbLink = null;
     let isActive = index + 1 === links.length ? "is-active" : null;
 
-    if (["movies", "tv", "people", "search"].includes(link.name)) {
-      if (link.name === "movies") {
-        crumbLink = (
-          <Link to={link.to}>
-            <span className="icon is-small">
-              <FontAwesomeIcon icon="film" />
-            </span>
-            <span>Movies</span>
-          </Link>
-        );
-      }
-      if (link.name === "people") {
-        crumbLink = (
-          <Link to={link.to}>
-            <span className="icon is-small">
-              <FontAwesomeIcon icon="user" />
-            </span>
-            <span>People</span>
-          </Link>
-        );
-      }
-      if (link.name === "tv") {
-        crumbLink = (
-          <Link to={link.to}>
-            <span className="icon is-small">
-              <FontAwesomeIcon icon="tv" />
-            </span>
-            <span>TV Series</span>
-          </Link>
-        );
-      }
-      if (link.name === "search") {
-        crumbLink = (
-          <Link to={link.to}>
-            <span className="icon is-small">
-              <FontAwesomeIcon icon="search" />
-            </span>
-            <span>Search</span>
-          </Link>
-        );
-      }
+    if (["movie", "tv", "people", "search"].includes(link.name)) {
+      crumbLink = getCrumbLink(link);
     } else {
       crumbLink = (
         <Link to={link.to}>
@@ -57,7 +36,7 @@ const Breadcrumbs = ({ links }) => {
     }
 
     return (
-      <li className={isActive} key={index}>
+      <li className={isActive} key={`crumblink-${index}`}>
         {crumbLink}
       </li>
     );

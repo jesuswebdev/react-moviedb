@@ -1,23 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { getMovieGenres } from "../../../utils";
-import { IMG_URL } from "../../../config";
+import { img_url } from "../../../config/index";
 
 const MovieCardItem = ({ movie }) => {
-  let img = `${IMG_URL}${movie.poster_path}`;
+  let img = `${img_url}${movie.poster_path}`;
   let originalTitle =
     movie.title !== movie.original_title ? ` (${movie.original_title})` : null;
   let detailsLink = `/movie/${movie.id}`;
   let genres = getMovieGenres(movie.genre_ids);
 
-  let overview = <p className="has-text-justified">{movie.overview}</p>;
+  let overview = movie.overview;
 
   if (movie.overview.length > 160) {
     overview = (
-      <p className="has-text-justified">
+      <>
         {movie.overview.slice(0, 150)}...
         <Link to={`/movie/${movie.id}`}>More</Link>
-      </p>
+      </>
     );
   }
 
@@ -41,18 +41,17 @@ const MovieCardItem = ({ movie }) => {
           </Link>
           <p className="subtitle is-6">{genres}</p>
           <p className="subtitle is-6">
-            Score:{" "}
+            Score:
             {movie.vote_count > 0
               ? `${movie.vote_average}/10 (${movie.vote_count} votes)`
               : "No votes yet"}
           </p>
-          {overview}
+          <p className="has-text-justified">{overview}</p>
         </div>
 
         <div className="card-footer">
           <Link to={detailsLink} className="card-footer-item">
-            {" "}
-            Details{" "}
+            Details
           </Link>
         </div>
       </div>
