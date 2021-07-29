@@ -3,36 +3,13 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Tabs = memo(
-  ({ active }) => {
-    const tabs = [
-      {
-        text: "Trending Movies",
-        path: "/trending",
-        icon: "fire",
-        iconColor: "danger",
-        active: active === "trending"
-      },
-      {
-        text: "In Theatres",
-        path: "/in-theatres",
-        icon: "ticket-alt",
-        iconColor: "black",
-        active: active === "in-theatres"
-      },
-      {
-        text: "Top Rated Movies",
-        path: "/top-rated",
-        icon: "star",
-        iconColor: "warning",
-        active: active === "top-rated"
-      }
-    ];
+  ({ items }) => {
     return (
       <div className="tabs is-centered is-boxed">
         <ul>
-          {tabs.map(tab => (
+          {items.map(tab => (
             <li className={tab.active ? "is-active" : ""} key={tab.path}>
-              <Link to={`/movies${tab.path}`}>
+              <Link to={tab.path}>
                 <span className="icon is-small">
                   <FontAwesomeIcon
                     icon={tab.icon}

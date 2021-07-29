@@ -44,7 +44,7 @@ const Home = () => {
             Browse through trending and top rated tv shows
           </p>
           <p className="has-text-centered">
-            <Link to="/tv" className="button is-white">
+            <Link to="/shows/trending" className="button is-white">
               Go to TV Shows
             </Link>
           </p>

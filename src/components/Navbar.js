@@ -44,18 +44,18 @@ const Header = () => {
       <div className="navbar-menu">
         <div className="navbar-start">
           <NavLink
-            to="/movies"
+            to="/movies/trending"
             className="navbar-item"
             activeClassName="is-active"
             onClick={onCloseBurgerMenu}>
             Movies
           </NavLink>
           <NavLink
-            to="/tv"
+            to="/shows/trending"
             className="navbar-item"
             activeClassName="is-active"
             onClick={onCloseBurgerMenu}>
-            TV Series
+            TV Shows
           </NavLink>
           <NavLink
             to="/people"

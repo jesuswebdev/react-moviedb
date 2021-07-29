@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useRouteMatch } from "react-router";
 
 import Spinner from "../../components/Spinner";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import ErrorMessage from "../../components/ErrorMessage";
 import MovieItems from "./movie-items/MovieItems";
-import Tabs from "./Tabs/Tabs";
+import Tabs from "../../components/Tabs";
 
 import { useHttp } from "@moviedb/hooks";
 
@@ -29,12 +29,39 @@ const Movies = () => {
 
   const breadcrumbLinks = [{ to: "/movies", name: "movie" }];
 
+  const tabs = useMemo(
+    () => [
+      {
+        text: "Trending Movies",
+        path: "/movies/trending",
+        icon: "fire",
+        iconColor: "danger",
+        active: params.type === "trending"
+      },
+      {
+        text: "In Theatres",
+        path: "/movies/in-theatres",
+        icon: "ticket-alt",
+        iconColor: "black",
+        active: params.type === "in-theatres"
+      },
+      {
+        text: "Top Rated Movies",
+        path: "/movies/top-rated",
+        icon: "star",
+        iconColor: "warning",
+        active: params.type === "top-rated"
+      }
+    ],
+    [params.type]
+  );
+
   return (
     <div
       className="container"
       style={{ minHeight: "85vh", marginBottom: "30px" }}>
       <Breadcrumbs links={breadcrumbLinks} />
-      <Tabs active={params.type} />
+      <Tabs items={tabs} />
       {isLoading && <Spinner />}
       {!isLoading && !hasError && <MovieItems movies={movies || []} />}
       {!isLoading && hasError && <ErrorMessage />}

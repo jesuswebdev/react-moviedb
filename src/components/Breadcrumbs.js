@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const linkProps = {
   movie: { text: "Movies", icon: "film" },
-  tv: { text: "TV Series", icon: "tv" },
+  tv: { text: "TV Shows", icon: "tv" },
   people: { text: "People", icon: "user" },
   search: { text: "Search", icon: "search" }
 };
