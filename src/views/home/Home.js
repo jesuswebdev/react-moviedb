@@ -6,7 +6,7 @@ const Home = () => {
     <>
       <div
         className="columns is-mobile is-centered is-multiline"
-        style={{ paddingTop: "60px" }}>
+        style={{ paddingTop: "120px" }}>
         <div className="column is-10-mobile is-10-tablet is-10-desktop">
           <p className="title is-1 has-text-centered has-text-white">
             Movie Finder
