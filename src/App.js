@@ -17,10 +17,10 @@ const App = () => (
         <Route path="/movie/:id" component={MovieDetails} />
         <Route path="/movies/:type" exact component={Movies} />
         <Route path="/shows/:type" exact component={Tv} />
-        {/* <Route path="/show/:id" component={TvDetails} /> */}
+        <Route path="/show/:id" component={TvDetails} />
         <Route path="/people/:id" component={PeopleDetails} />
         <Route path="/people" exact component={People} />
-        {/* <Route path="/search" component={Search} /> */}
+        <Route path="/search" component={Search} />
         <Route path="/" exact component={Home} />
         <Redirect to="/" />
       </Switch>
