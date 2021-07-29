@@ -1,89 +1,67 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect } from "react";
+import { useRouteMatch } from "react-router";
 
-import * as movieActions from '../../state/movies/actions';
-import Spinner from '../../components/Spinner';
-import Breadcrumbs from '../../components/Breadcrumbs';
-import MovieItems from './movie-items/MovieItems';
+import Spinner from "../../components/Spinner";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import ErrorMessage from "../../components/ErrorMessage";
+import MovieItems from "./movie-items/MovieItems";
+import Tabs from "../../components/Tabs";
 
-class Movies extends Component {
+import { useHttp } from "@moviedb/hooks";
 
-    componentDidMount() {
-        this.props.getTopMovies();
-        this.props.getTrendingMovies();
-        this.props.getPlayingMovies();
+const Movies = () => {
+  const { isLoading, hasError, data, get } = useHttp();
+
+  const { params } = useRouteMatch();
+
+  useEffect(() => {
+    let url = `/trending/movie/day`;
+    if (params.type === "top-rated") {
+      url = `/movie/top_rated?language=en-US&page=1`;
     }
-
-    styles = {
-        minHeight: '85vh',
-        marginBottom: '30px'
+    if (params.type === "in-theatres") {
+      url = `/movie/now_playing?language=en-US&page=1`;
     }
+    get(url);
+  }, [params.type]);
 
-    render() {
+  const movies = data?.results;
 
-        if (this.props.selectedTab === 'trending' && this.props.trending.length < 1) {
-            return <Spinner />;
-        }
+  const breadcrumbLinks = [{ to: "/movies", name: "movie" }];
 
-        if (this.props.selectedTab === 'top' && this.props.top.length < 1) {
-            return <Spinner />
-        }
-
-        const breadcrumbLinks = [
-            {to: '/movies', name: 'movie'}
-        ];
-
-        return (
-            <div className="container" style={this.styles}>
-                <Breadcrumbs links={breadcrumbLinks} />
-                <div className="tabs is-centered is-boxed">
-                    <ul>
-                        <li className={this.props.selectedTab === 'trending' ? 'is-active' : null} onClick={() => this.props.selectTab('trending')}>
-                        <a>
-                            <span className="icon is-small"> <FontAwesomeIcon icon="fire" className="has-text-danger" /> </span>
-                            <span>Trending Movies</span>
-                        </a>
-                        </li>
-                        <li className={this.props.selectedTab === 'playing' ? 'is-active' : null} onClick={() => this.props.selectTab('playing')}>
-                        <a>
-                            <span className="icon is-small"> <FontAwesomeIcon icon="ticket-alt" className="has-text-black" /> </span>
-                            <span>In Theatres</span>
-                        </a>
-                        </li>
-                        <li className={this.props.selectedTab === 'top' ? 'is-active' : null} onClick={() => this.props.selectTab('top')}>
-                        <a>
-                            <span className="icon is-small"> <FontAwesomeIcon icon="star" className="has-text-warning" /> </span>
-                            <span>Top Rated Movies</span>
-                        </a>
-                        </li>
-                    </ul>
-                </div>
-
-                {this.props.selectedTab === 'trending' && <MovieItems movies={this.props.trending}/>}
-                {this.props.selectedTab === 'playing' && <MovieItems movies={this.props.nowPlaying} />}
-                {this.props.selectedTab === 'top' && <MovieItems movies={this.props.top} />}
-            </div>
-        );
+  const tabs = [
+    {
+      text: "Trending Movies",
+      path: "/movies/trending",
+      icon: "fire",
+      iconColor: "danger",
+      active: params.type === "trending"
+    },
+    {
+      text: "In Theatres",
+      path: "/movies/in-theatres",
+      icon: "ticket-alt",
+      iconColor: "black",
+      active: params.type === "in-theatres"
+    },
+    {
+      text: "Top Rated Movies",
+      path: "/movies/top-rated",
+      icon: "star",
+      iconColor: "warning",
+      active: params.type === "top-rated"
     }
-}
+  ];
 
-const mapStateToProps = (state) => {
-    return {
-        trending: state.movies.trending,
-        top: state.movies.top,
-        nowPlaying: state.movies.playing,
-        selectedTab: state.movies.selectedTab
-    }
-}
+  return (
+    <>
+      <Breadcrumbs links={breadcrumbLinks} />
+      <Tabs items={tabs} />
+      {isLoading && <Spinner />}
+      {!isLoading && !hasError && <MovieItems movies={movies || []} />}
+      {!isLoading && hasError && <ErrorMessage />}
+    </>
+  );
+};
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getTrendingMovies: () => { dispatch(movieActions.fetchTrendingMovies()) },
-        getTopMovies: () => { dispatch(movieActions.fetchTopMovies()) },
-        getPlayingMovies: () => { dispatch(movieActions.fetchPlayingMovies()) },
-        selectTab: (tab) => { dispatch(movieActions.selectTab(tab)) }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Movies);
+export default Movies;

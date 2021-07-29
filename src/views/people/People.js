@@ -1,61 +1,40 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useCallback } from "react";
+import PeopleCard from "./people-card/PeopleCard";
+import Spinner from "../../components/Spinner";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import { useHttp } from "@moviedb/hooks";
 
-import * as peopleActions from '../../state/people/actions';
-import PeopleCard from './people-card/PeopleCard';
-import Spinner from '../../components/Spinner';
-import Breadcrumbs from '../../components/Breadcrumbs';
+const People = () => {
+  const {
+    isLoading,
+    data: people,
+    get: getPeople
+  } = useHttp(useCallback(v => v.results, []));
 
-class People extends Component {
+  useEffect(() => {
+    getPeople(`/person/popular?language=en-US&page=1`);
+  }, []);
 
-    componentDidMount() {
-        this.props.getPeople();
-    }
+  if (isLoading || !people) {
+    return <Spinner />;
+  }
 
-    styles = {
-        minHeight: '85vh',
-        marginBottom: '30px'
-    }
+  const breadcrumbLinks = [{ to: "/people", name: "people" }];
 
-    render() {
+  return (
+    <>
+      <Breadcrumbs links={breadcrumbLinks} />
+      <div className="columns is-mobile is-centered is-multiline">
+        {people.map(person => (
+          <div
+            className="column is-10-mobile is-5-tablet is-4-desktop"
+            key={`person-${person.id}`}>
+            <PeopleCard people={person} />
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
 
-        if (!this.props.people || this.props.people.length < 1) {
-            return <Spinner />
-        }
-
-        let people = this.props.people.map(person => {
-            return (
-                <div className="column is-10-mobile is-5-tablet is-4-desktop" key={person.id}>
-                    <PeopleCard people={person}/>
-                </div>
-            );
-        })
-
-        const breadcrumbLinks = [
-            {to: '/people', name: 'people'}
-        ];
-
-        return (
-            <div className="container" style={this.styles}>
-                <Breadcrumbs links={breadcrumbLinks} />
-                <div className="columns is-mobile is-centered is-multiline">
-                    {people}
-                </div>
-            </div>
-        );
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        people: state.people.people
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getPeople: () => { dispatch(peopleActions.fetchPeople()) }
-    }
-}
- 
-export default connect(mapStateToProps, mapDispatchToProps)(People);
+export default People;

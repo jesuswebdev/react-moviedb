@@ -1,82 +1,67 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useCallback } from "react";
+import { useRouteMatch } from "react-router";
+import DetailsCard from "./details-card/DetailsCard";
+import Spinner from "../../components/Spinner";
+import Biography from "./biography/Biography";
+import Credits from "./credits/Credits";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import PosterImage from "../../components/PosterImage";
+import { useHttp } from "@moviedb/hooks";
 
-import * as peopleActions from '../../state/people/actions';
-import DetailsCard from './details-card/DetailsCard';
-import Spinner from '../../components/Spinner';
-import Biography from './biography/Biography';
-import Credits from './credits/Credits';
-import Breadcrumbs from '../../components/Breadcrumbs';
+const PeopleDetails = () => {
+  const {
+    isLoading: loadingDetails,
+    data: details,
+    get: getDetails
+  } = useHttp();
+  const {
+    isLoading: loadingCredits,
+    data: credits,
+    get: getCredits
+  } = useHttp(useCallback(v => v.cast, []));
 
-class PeopleDetails extends Component {
+  const { params } = useRouteMatch();
 
-    componentDidMount() {
-        this.props.clearCredits();
-        this.props.getDetails(this.props.match.params.id);
-        this.props.getCredits(this.props.match.params.id);
-    }
+  useEffect(() => {
+    getDetails(`/person/${params.id}?language=en-US`);
+    getCredits(`/person/${params.id}/combined_credits?language=en-US`);
+  }, []);
 
-    styles = {
-        minHeight: '85vh',
-        marginBottom: '30px'
-    };
+  if (!details || loadingDetails || !credits || loadingCredits) {
+    return <Spinner />;
+  }
 
-    render() { 
-        if (!this.props.details) {
-            return <Spinner />;
-        }
+  const url = "https://image.tmdb.org/t/p/h632";
+  const dummyImg = "https://placeimg.com/500/750/animals";
+  const img = details.profile_path ? url + details.profile_path : dummyImg;
+  const breadcrumbLinks = [
+    { to: "/people", name: "people" },
+    { to: "/people/" + details.id, name: details.name }
+  ];
 
-        if (this.props.details.id !== parseInt(this.props.match.params.id, 10)) {
-            return <Spinner />;
-        }
-
-        const url = "https://image.tmdb.org/t/p/h632";
-        const dummyImg = 'https://placeimg.com/500/750/animals';
-        const img = this.props.details.profile_path ? url + this.props.details.profile_path : dummyImg;
-        const breadcrumbLinks = [
-            {to: '/people', name: 'people'},
-            {to: '/people/' + this.props.details.id, name: this.props.details.name}
-        ];
-
-        return (
-            <div className="container" style={this.styles}>
-                <Breadcrumbs links={breadcrumbLinks} />
-                <div className="columns is-mobile is-centered is-multiline">
-                    <div className="column is-10-mobile is-5-tablet is-5-desktop">
-                        <div className="card">
-                            <div className="card-image">
-                                <figure className="image">
-                                    <img src={img} alt={this.props.details.name} />
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="column is-10-mobile is-5-tablet is-5-desktop">
-                        <DetailsCard details={this.props.details} />
-                    </div>
-                </div>
-
-                <Biography bio={this.props.details.biography} />
-                <Credits credits={this.props.credits} />
+  return (
+    <>
+      <Breadcrumbs links={breadcrumbLinks} />
+      <div className="columns is-mobile is-centered is-multiline">
+        <div className="column is-10-mobile is-5-tablet is-5-desktop">
+          <div className="card">
+            <div className="card-image">
+              <figure className="image">
+                <PosterImage src={img} alt={details.name} />
+              </figure>
             </div>
-        );
-    }
-}
+          </div>
+        </div>
 
-const mapStateToProps = (state) => {
-    return {
-        details: state.people.people_details,
-        credits: state.people.credits
-    }
-}
+        <div className="column is-10-mobile is-5-tablet is-5-desktop">
+          <DetailsCard details={details} />
+        </div>
+      </div>
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getDetails: (id) => { dispatch(peopleActions.fetchPeopleDetails(id)) },
-        getCredits: (id) => { dispatch(peopleActions.fetchPeopleCredits(id)) },
-        clearCredits: () => { dispatch(peopleActions.clearPeopleCredits()) }
-    }
-}
- 
-export default connect(mapStateToProps, mapDispatchToProps)(PeopleDetails);
+      <Biography bio={details.biography} />
+      <Credits credits={credits} />
+    </>
+  );
+};
+
+export default PeopleDetails;
