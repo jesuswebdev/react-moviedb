@@ -4,7 +4,7 @@ import { getFullDate } from "../../../utils";
 const DetailsCard = ({ serie }) => {
   const homepageButton = serie.homepage ? (
     <div className="card-footer">
-      <a href={serie.homepage} className="card-footer-item">
+      <a href={serie.homepage} className="card-footer-item" target="_blank">
         Visit homepage
       </a>
     </div>

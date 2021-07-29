@@ -5,7 +5,7 @@ const DetailsCard = ({ details }) => {
   const knownAs = details.also_known_as.map(name => name).join(", ");
 
   const homepageButton = details.homepage ? (
-    <a className="card-footer-item" href={details.homepage}>
+    <a className="card-footer-item" href={details.homepage} target="_blank">
       Visit Homepage
     </a>
   ) : null;
@@ -40,7 +40,10 @@ const DetailsCard = ({ details }) => {
       <div className="card-footer">
         {homepageButton}
         {details.imdb_id ? (
-          <a className="card-footer-item" href={imdbUrl + details.imdb_id}>
+          <a
+            className="card-footer-item"
+            href={imdbUrl + details.imdb_id}
+            target="_blank">
             Visit on IMDb
           </a>
         ) : null}

@@ -6,13 +6,14 @@ const DetailsCard = ({ movie }) => {
   const imdbButton = movie.imdb_id ? (
     <a
       href={`https://www.imdb.com/title/${movie.imdb_id}`}
-      className="card-footer-item">
+      className="card-footer-item"
+      target="_blank">
       Visit IMDb
     </a>
   ) : null;
 
   const homepageButton = movie.homepage ? (
-    <a href={movie.homepage} className="card-footer-item">
+    <a href={movie.homepage} className="card-footer-item" target="_blank">
       Visit Homepage
     </a>
   ) : null;
