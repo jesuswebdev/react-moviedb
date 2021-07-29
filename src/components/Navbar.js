@@ -1,28 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 
-const onClickBurgerMenu = () => {
-  let menu = document.querySelector(".navbar-menu");
-  let burger = document.querySelector(".navbar-burger");
-
-  burger.classList.toggle("is-active");
-  menu.classList.toggle("is-active");
-};
-
-const onCloseBurgerMenu = () => {
-  let menu = document.querySelector(".navbar-menu");
-  let burger = document.querySelector(".navbar-burger");
-
-  if (menu.classList.contains("is-active")) {
-    menu.classList.remove("is-active");
-  }
-
-  if (burger.classList.contains("is-active")) {
-    burger.classList.remove("is-active");
-  }
-};
-
 const Header = () => {
+  const [burgerMenuIsActive, setBurgerMenuIsActive] = useState(false);
+
+  const toggleBurgerMenu = () => {
+    setBurgerMenuIsActive(value => !value);
+  };
+
+  const closeBurgerMenu = () => {
+    setBurgerMenuIsActive(false);
+  };
+
   return (
     <nav className="navbar is-fixed-top is-dark" aria-label="main navigation">
       <div className="navbar-brand">
@@ -32,43 +21,43 @@ const Header = () => {
 
         <a
           role="button"
-          className="navbar-burger"
+          className={`navbar-burger ${burgerMenuIsActive ? "is-active" : ""}`}
           aria-label="menu"
           aria-expanded="false"
-          onClick={onClickBurgerMenu}>
+          onClick={toggleBurgerMenu}>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div className="navbar-menu">
+      <div className={`navbar-menu ${burgerMenuIsActive ? "is-active" : ""}`}>
         <div className="navbar-start">
           <NavLink
             to="/movies/trending"
             className="navbar-item"
             activeClassName="is-active"
-            onClick={onCloseBurgerMenu}>
+            onClick={closeBurgerMenu}>
             Movies
           </NavLink>
           <NavLink
             to="/shows/trending"
             className="navbar-item"
             activeClassName="is-active"
-            onClick={onCloseBurgerMenu}>
+            onClick={closeBurgerMenu}>
             TV Shows
           </NavLink>
           <NavLink
             to="/people"
             className="navbar-item"
             activeClassName="is-active"
-            onClick={onCloseBurgerMenu}>
+            onClick={closeBurgerMenu}>
             People
           </NavLink>
           <NavLink
             to="/search"
             className="navbar-item"
             activeClassName="is-active"
-            onClick={onCloseBurgerMenu}>
+            onClick={closeBurgerMenu}>
             Search
           </NavLink>
         </div>
