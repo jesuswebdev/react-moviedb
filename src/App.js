@@ -18,7 +18,7 @@ const App = () => (
         <Route path="/movies/:type" exact component={Movies} />
         {/* <Route path="/tv/:id" component={TvDetails} /> */}
         {/* <Route path="/tv" exact component={Tv} /> */}
-        {/* <Route path="/people/:id" component={PeopleDetails} /> */}
+        <Route path="/people/:id" component={PeopleDetails} />
         <Route path="/people" exact component={People} />
         {/* <Route path="/search" component={Search} /> */}
         <Route path="/" exact component={Home} />

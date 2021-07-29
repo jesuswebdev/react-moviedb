@@ -39,9 +39,11 @@ const DetailsCard = ({ details }) => {
       </div>
       <div className="card-footer">
         {homepageButton}
-        <a className="card-footer-item" href={imdbUrl + details.imdb_id}>
-          Visit on IMDb
-        </a>
+        {details.imdb_id ? (
+          <a className="card-footer-item" href={imdbUrl + details.imdb_id}>
+            Visit on IMDb
+          </a>
+        ) : null}
       </div>
     </div>
   );
