@@ -44,7 +44,7 @@ const DetailsCard = ({ details }) => {
             className="card-footer-item"
             href={imdbUrl + details.imdb_id}
             target="_blank">
-            Visit on IMDb
+            View on IMDb
           </a>
         ) : null}
       </div>

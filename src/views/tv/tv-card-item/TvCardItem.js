@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { img_url } from "../../../config/index";
 import { getTvGenres } from "../../../utils";
+import PosterImage from "../../../components/PosterImage";
 
 const TvCardItem = ({ serie }) => {
   const genres = getTvGenres(serie.genre_ids);
@@ -23,7 +24,7 @@ const TvCardItem = ({ serie }) => {
       <div className="card-image">
         <Link to={detailsLink}>
           <figure className="image">
-            <img src={img_url + serie.poster_path} alt={serie.name} />
+            <PosterImage src={img_url + serie.poster_path} alt={serie.name} />
           </figure>
         </Link>
       </div>

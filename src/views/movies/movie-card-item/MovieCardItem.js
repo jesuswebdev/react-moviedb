@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getMovieGenres } from "../../../utils";
 import { img_url } from "../../../config/index";
+import PosterImage from "../../../components/PosterImage";
 
 const MovieCardItem = ({ movie }) => {
   let img = `${img_url}${movie.poster_path}`;
@@ -27,7 +28,7 @@ const MovieCardItem = ({ movie }) => {
         <div className="card-image">
           <Link to={detailsLink}>
             <figure className="image">
-              <img src={img} alt={movie.title} />
+              <PosterImage src={img} alt={movie.title} />
             </figure>
           </Link>
         </div>

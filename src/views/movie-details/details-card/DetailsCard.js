@@ -8,7 +8,7 @@ const DetailsCard = ({ movie }) => {
       href={`https://www.imdb.com/title/${movie.imdb_id}`}
       className="card-footer-item"
       target="_blank">
-      Visit IMDb
+      View on IMDb
     </a>
   ) : null;
 

@@ -6,6 +6,7 @@ import DetailsCard from "./details-card/DetailsCard";
 import CastCard from "./cast-card/CastCard";
 import Spinner from "../../components/Spinner";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import PosterImage from "../../components/PosterImage";
 
 import { useHttp } from "@moviedb/hooks";
 
@@ -62,7 +63,7 @@ const MovieDetails = () => {
   }
 
   const breadcrumbLinks = [
-    { to: "/movies", name: "movie" },
+    { to: "/movies/trending", name: "movie" },
     { to: "/movie/" + movie.id, name: movie.title }
   ];
 
@@ -74,7 +75,7 @@ const MovieDetails = () => {
           <div className="card">
             <div className="card-image">
               <figure className="image">
-                <img src={img} alt={movie.title} />
+                <PosterImage src={img} alt={movie.title} />
               </figure>
             </div>
           </div>

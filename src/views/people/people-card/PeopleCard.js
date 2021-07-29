@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PosterImage from "../../../components/PosterImage";
 
 const PeopleCard = props => {
   const url = "https://image.tmdb.org/t/p/h632";
@@ -19,7 +20,7 @@ const PeopleCard = props => {
       <div className="card-image">
         <figure className="image">
           <Link to={linkDetails}>
-            <img
+            <PosterImage
               src={
                 props.people.profile_path
                   ? url + props.people.profile_path

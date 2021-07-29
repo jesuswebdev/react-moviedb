@@ -5,6 +5,7 @@ import Spinner from "../../components/Spinner";
 import Biography from "./biography/Biography";
 import Credits from "./credits/Credits";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import PosterImage from "../../components/PosterImage";
 import { useHttp } from "@moviedb/hooks";
 
 const PeopleDetails = () => {
@@ -46,7 +47,7 @@ const PeopleDetails = () => {
           <div className="card">
             <div className="card-image">
               <figure className="image">
-                <img src={img} alt={details.name} />
+                <PosterImage src={img} alt={details.name} />
               </figure>
             </div>
           </div>

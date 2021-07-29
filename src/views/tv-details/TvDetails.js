@@ -7,6 +7,7 @@ import Cast from "./cast/Cast";
 import Seasons from "./seasons/Seasons";
 import Spinner from "../../components/Spinner";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import PosterImage from "../../components/PosterImage";
 
 import { useHttp } from "@moviedb/hooks";
 
@@ -56,7 +57,7 @@ const TvDetails = () => {
           <div className="card">
             <div className="card-image">
               <figure className="image">
-                <img src={img} alt={show.name} />
+                <PosterImage src={img} alt={show.name} />
               </figure>
             </div>
           </div>
