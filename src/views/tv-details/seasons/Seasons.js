@@ -1,6 +1,5 @@
 import React from "react";
 import { getFullDate } from "../../../utils";
-import Aux from "../../../components/Aux";
 
 const Seasons = ({ seasons }) => {
   const url = "https://image.tmdb.org/t/p/w92";
@@ -9,10 +8,10 @@ const Seasons = ({ seasons }) => {
   let seasonsArray = seasons.map(season => {
     let episodeCount =
       season.episode_count > 0 ? (
-        <Aux>
+        <>
           <small>Episodes: {season.episode_count}</small>
           <br />
-        </Aux>
+        </>
       ) : null;
 
     return (

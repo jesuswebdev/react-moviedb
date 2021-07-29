@@ -2,17 +2,13 @@ import React from "react";
 import { getFullDate } from "../../../utils";
 
 const DetailsCard = ({ serie }) => {
-  let homepageButton = null;
-
-  if (serie.homepage) {
-    homepageButton = (
-      <div className="card-footer">
-        <a href={serie.homepage} className="card-footer-item">
-          Visit homepage
-        </a>
-      </div>
-    );
-  }
+  const homepageButton = serie.homepage ? (
+    <div className="card-footer">
+      <a href={serie.homepage} className="card-footer-item">
+        Visit homepage
+      </a>
+    </div>
+  ) : null;
 
   return (
     <div className="card">
