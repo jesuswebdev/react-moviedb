@@ -15,11 +15,6 @@ const People = () => {
     getPeople(`/person/popular?language=en-US&page=1`);
   }, []);
 
-  const styles = {
-    minHeight: "85vh",
-    marginBottom: "30px"
-  };
-
   if (isLoading || !people) {
     return <Spinner />;
   }
@@ -27,7 +22,7 @@ const People = () => {
   const breadcrumbLinks = [{ to: "/people", name: "people" }];
 
   return (
-    <div className="container" style={styles}>
+    <>
       <Breadcrumbs links={breadcrumbLinks} />
       <div className="columns is-mobile is-centered is-multiline">
         {people.map(person => (
@@ -38,7 +33,7 @@ const People = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

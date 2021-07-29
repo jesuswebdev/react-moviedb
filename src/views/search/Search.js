@@ -13,11 +13,6 @@ const Search = () => {
     get: getSearchResults
   } = useHttp();
 
-  const styles = {
-    minHeight: "85vh",
-    marginBottom: "30px"
-  };
-
   const breadcrumbLinks = [{ to: "/search", name: "search" }];
 
   const onSearch = useCallback((query, type) => {
@@ -30,7 +25,7 @@ const Search = () => {
   }, []);
 
   return (
-    <div className="container" style={styles}>
+    <>
       <Breadcrumbs links={breadcrumbLinks} />
       <div className="columns is-mobile is-centered">
         <div className="column is-10-mobile is-8-tablet is-6-desktop">
@@ -45,7 +40,7 @@ const Search = () => {
           selectedOption={selectedOption}
         />
       )}
-    </div>
+    </>
   );
 };
 

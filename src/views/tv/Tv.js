@@ -20,11 +20,6 @@ const Tv = () => {
     get(url);
   }, [params.type]);
 
-  const styles = {
-    minHeight: "85vh",
-    marginBottom: "30px"
-  };
-
   const breadcrumbLinks = [{ to: "/shows/trending", name: "tv" }];
 
   const tabs = useMemo(
@@ -52,11 +47,11 @@ const Tv = () => {
   }
 
   return (
-    <div className="container" style={styles}>
+    <>
       <Breadcrumbs links={breadcrumbLinks} />
       <Tabs items={tabs} />
       <TvItems series={shows} hasError={hasError} reloadTv={() => {}} />
-    </div>
+    </>
   );
 };
 

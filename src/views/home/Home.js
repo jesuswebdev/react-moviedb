@@ -2,17 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const styles = {
-    minHeight: "100vh",
-    minWidth: "100vw",
-    backgroundSize: "cover",
-    backgroundPosition: "center center",
-    backgroundRepeat: "no repeat",
-    backgroundImage: `url('/img/background.jpg')`
-  };
-
   return (
-    <div className="container" style={styles}>
+    <>
       <div
         className="columns is-mobile is-centered is-multiline"
         style={{ paddingTop: "60px" }}>
@@ -72,7 +63,7 @@ const Home = () => {
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

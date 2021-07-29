@@ -26,11 +26,6 @@ const PeopleDetails = () => {
     getCredits(`/person/${params.id}/combined_credits?language=en-US`);
   }, []);
 
-  const styles = {
-    minHeight: "85vh",
-    marginBottom: "30px"
-  };
-
   if (!details || loadingDetails || !credits || loadingCredits) {
     return <Spinner />;
   }
@@ -44,7 +39,7 @@ const PeopleDetails = () => {
   ];
 
   return (
-    <div className="container" style={styles}>
+    <>
       <Breadcrumbs links={breadcrumbLinks} />
       <div className="columns is-mobile is-centered is-multiline">
         <div className="column is-10-mobile is-5-tablet is-5-desktop">
@@ -64,7 +59,7 @@ const PeopleDetails = () => {
 
       <Biography bio={details.biography} />
       <Credits credits={credits} />
-    </div>
+    </>
   );
 };
 

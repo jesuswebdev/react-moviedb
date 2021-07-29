@@ -35,11 +35,6 @@ const MovieDetails = () => {
     getMovieCast(`/movie/${params.id}/credits`);
   }, [params.id]);
 
-  const styles = {
-    minHeight: "85vh",
-    marginBottom: "30px"
-  };
-
   if (
     isLoadingMovieCast ||
     isLoadingMovieDetails ||
@@ -72,7 +67,7 @@ const MovieDetails = () => {
   ];
 
   return (
-    <div className="container" style={styles}>
+    <>
       <Breadcrumbs links={breadcrumbLinks} />
       <div className="columns is-mobile is-centered is-multiline">
         <div className="column is-10-mobile is-5-tablet is-5-desktop">
@@ -99,7 +94,7 @@ const MovieDetails = () => {
           <InfoCard movie={movie} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

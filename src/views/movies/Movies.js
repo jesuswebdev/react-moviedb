@@ -57,15 +57,13 @@ const Movies = () => {
   );
 
   return (
-    <div
-      className="container"
-      style={{ minHeight: "85vh", marginBottom: "30px" }}>
+    <>
       <Breadcrumbs links={breadcrumbLinks} />
       <Tabs items={tabs} />
       {isLoading && <Spinner />}
       {!isLoading && !hasError && <MovieItems movies={movies || []} />}
       {!isLoading && hasError && <ErrorMessage />}
-    </div>
+    </>
   );
 };
 
