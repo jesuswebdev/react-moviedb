@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useRouteMatch } from "react-router";
 
 import Spinner from "../../components/Spinner";
@@ -29,32 +29,29 @@ const Movies = () => {
 
   const breadcrumbLinks = [{ to: "/movies", name: "movie" }];
 
-  const tabs = useMemo(
-    () => [
-      {
-        text: "Trending Movies",
-        path: "/movies/trending",
-        icon: "fire",
-        iconColor: "danger",
-        active: params.type === "trending"
-      },
-      {
-        text: "In Theatres",
-        path: "/movies/in-theatres",
-        icon: "ticket-alt",
-        iconColor: "black",
-        active: params.type === "in-theatres"
-      },
-      {
-        text: "Top Rated Movies",
-        path: "/movies/top-rated",
-        icon: "star",
-        iconColor: "warning",
-        active: params.type === "top-rated"
-      }
-    ],
-    [params.type]
-  );
+  const tabs = [
+    {
+      text: "Trending Movies",
+      path: "/movies/trending",
+      icon: "fire",
+      iconColor: "danger",
+      active: params.type === "trending"
+    },
+    {
+      text: "In Theatres",
+      path: "/movies/in-theatres",
+      icon: "ticket-alt",
+      iconColor: "black",
+      active: params.type === "in-theatres"
+    },
+    {
+      text: "Top Rated Movies",
+      path: "/movies/top-rated",
+      icon: "star",
+      iconColor: "warning",
+      active: params.type === "top-rated"
+    }
+  ];
 
   return (
     <>

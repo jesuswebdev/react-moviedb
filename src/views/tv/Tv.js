@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import Spinner from "../../components/Spinner";
 import Breadcrumbs from "../../components/Breadcrumbs";
@@ -22,35 +22,31 @@ const Tv = () => {
 
   const breadcrumbLinks = [{ to: "/shows/trending", name: "tv" }];
 
-  const tabs = useMemo(
-    () => [
-      {
-        text: "Trending TV Shows",
-        path: "/shows/trending",
-        icon: "fire",
-        iconColor: "danger",
-        active: params.type === "trending"
-      },
-      {
-        text: "Top Rated TV Shows",
-        path: "/shows/top-rated",
-        icon: "star",
-        iconColor: "warning",
-        active: params.type === "top-rated"
-      }
-    ],
-    [params.type]
-  );
-
-  if (!shows || isLoading) {
-    return <Spinner />;
-  }
+  const tabs = [
+    {
+      text: "Trending TV Shows",
+      path: "/shows/trending",
+      icon: "fire",
+      iconColor: "danger",
+      active: params.type === "trending"
+    },
+    {
+      text: "Top Rated TV Shows",
+      path: "/shows/top-rated",
+      icon: "star",
+      iconColor: "warning",
+      active: params.type === "top-rated"
+    }
+  ];
 
   return (
     <>
       <Breadcrumbs links={breadcrumbLinks} />
       <Tabs items={tabs} />
-      <TvItems series={shows} hasError={hasError} reloadTv={() => {}} />
+      {(isLoading || !shows) && <Spinner />}
+      {!isLoading && shows && (
+        <TvItems series={shows} hasError={hasError} reloadTv={() => {}} />
+      )}
     </>
   );
 };

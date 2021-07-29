@@ -24,7 +24,7 @@ const Tabs = memo(
       </div>
     );
   },
-  (prev, next) => prev.active === next.active
+  (prev, next) => JSON.stringify(prev.items) === JSON.stringify(next.items)
 );
 
 export default Tabs;
