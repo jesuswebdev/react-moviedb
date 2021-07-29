@@ -22,7 +22,7 @@ const TvDetails = () => {
     isLoading: isLoadingTvShowCast,
     data: cast,
     get: getTvShowCast
-  } = useHttp();
+  } = useHttp(v => v.cast);
 
   const { params } = useRouteMatch();
 
@@ -40,7 +40,7 @@ const TvDetails = () => {
     marginBottom: "30px"
   };
 
-  if (!show || isLoadingTvShow || !showCast || isLoadingTvShowCast) {
+  if (!show || isLoadingTvShow || !cast || isLoadingTvShowCast) {
     return <Spinner />;
   }
 
@@ -82,7 +82,7 @@ const TvDetails = () => {
           {cast && (
             <Cast
               cast={showFullCast ? cast : cast.slice(0, 10)}
-              isFullCast={showFullCast}
+              isFullCast={showFullCast || cast.length <= 10}
               onClickShowFullCast={toggleShowFullCast}
             />
           )}
